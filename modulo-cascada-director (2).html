@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Efecto cascada del bono — Directores de proyecto (Grupo 1) — Compensación variable 2026</title>
+<style>
+/* ============================================================
+   ESCALA — tokens (colors_and_type.css, subset autocontenido)
+   ============================================================ */
+:root{
+  --escala-orange:#DB4426;
+  --escala-orange-700:#B8351B;
+  --escala-orange-100:#FBEDE9;
+  --brand-deep-blue:#043A43;
+  --escala-navy:#1D212F;
+  --gray-0:#FFFFFF; --gray-25:#FBFBFB; --gray-50:#F8F8F8; --gray-100:#F2F2F2;
+  --gray-150:#EDEDED; --gray-200:#E5E5E5; --gray-300:#D9D9D9; --gray-400:#AEAEAE;
+  --gray-500:#8A8A8A; --gray-600:#494949; --gray-700:#0B0B0B; --gray-900:#000000;
+  --fg-1:var(--gray-900); --fg-2:var(--gray-700); --fg-3:var(--gray-500);
+  --bg-page:var(--gray-25); --bg-card:var(--gray-0); --bg-inset:var(--gray-100);
+  --border-subtle:var(--gray-200); --border-default:var(--gray-300);
+  --status-positive:#1F7A4D; --status-positive-bg:#E8F1EC;
+  --status-warning:#B07000;  --status-warning-bg:#FBF1DD;
+  --status-negative:#B5331C; --status-negative-bg:#F7E5E1;
+  --font-sans:"Nimbus Sans L","Nimbus Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --font-mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--font-sans);
+  background:var(--bg-page);
+  color:var(--fg-2);
+  font-size:14px;
+  line-height:1.45;
+  font-variant-numeric:tabular-nums;
+}
+.wrap{max-width:880px;margin:0 auto;padding:0 24px 72px}
+a{color:var(--escala-orange);text-decoration:none}
+
+header{border-bottom:1px solid var(--border-subtle);background:var(--bg-card)}
+.header-inner{max-width:880px;margin:0 auto;padding:20px 24px;display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.logo{font-weight:700;letter-spacing:.18em;font-size:15px;color:var(--fg-1)}
+.logo span{color:var(--escala-orange)}
+.header-meta{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-3)}
+
+.hero{padding:48px 0 40px;border-bottom:1px solid var(--border-subtle)}
+.eyebrow{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--escala-orange);font-weight:700;margin-bottom:12px}
+h1{font-size:34px;line-height:1.1;letter-spacing:-0.02em;color:var(--fg-1);font-weight:700;max-width:640px}
+.lede{font-size:18px;line-height:1.45;color:var(--gray-600);margin-top:16px;max-width:640px;font-weight:300}
+
+section{padding:40px 0;border-bottom:1px solid var(--border-subtle)}
+.sec-label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--fg-3);font-weight:700;margin-bottom:8px}
+h2{font-size:24px;letter-spacing:-0.01em;color:var(--fg-1);font-weight:700;margin-bottom:16px}
+h3{font-size:16px;color:var(--fg-1);font-weight:700;margin-bottom:8px}
+p{margin-bottom:12px;max-width:680px}
+p:last-child{margin-bottom:0}
+
+.rule-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border-default);border:1px solid var(--border-default);border-radius:8px;overflow:hidden;margin-top:20px}
+.rule-cell{background:var(--bg-card);padding:20px}
+.rule-num{font-size:26px;font-weight:700;color:var(--escala-orange);margin-bottom:8px}
+.rule-cell strong{display:block;color:var(--fg-1);margin-bottom:6px;font-size:14px}
+.rule-cell p{font-size:13px;color:var(--gray-600);margin:0}
+
+.kpi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px}
+.kpi-card{background:var(--bg-card);border:1px solid var(--border-default);border-radius:8px;padding:20px}
+.kpi-card .kpi-name{font-size:13px;font-weight:700;color:var(--fg-1)}
+.kpi-card .kpi-min{font-size:30px;font-weight:700;color:var(--fg-1);margin:8px 0 2px}
+.kpi-card .kpi-cap{font-size:12px;color:var(--fg-3)}
+.kpi-card .kpi-w{margin-top:12px;padding-top:12px;border-top:1px solid var(--border-subtle);font-size:12px;color:var(--gray-600)}
+
+table{width:100%;border-collapse:collapse;background:var(--bg-card);border:1px solid var(--border-default);border-radius:8px;overflow:hidden;font-size:13px;margin-top:16px}
+thead th{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-3);text-align:left;padding:10px 14px;background:var(--gray-50);border-bottom:1px solid var(--border-default);font-weight:700}
+tbody td{padding:10px 14px;border-bottom:1px solid var(--border-subtle);color:var(--fg-2)}
+tbody tr:last-child td{border-bottom:none}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+tr.total td{font-weight:700;color:var(--fg-1);background:var(--gray-50)}
+tr.zeroed td{color:var(--status-warning)}
+
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.04em;padding:3px 8px;border-radius:4px}
+.badge.ok{color:var(--status-positive);background:var(--status-positive-bg)}
+.badge.no{color:var(--status-negative);background:var(--status-negative-bg)}
+.badge.warn{color:var(--status-warning);background:var(--status-warning-bg)}
+
+.callout{border:1px solid var(--border-default);border-left:3px solid var(--escala-orange);border-radius:0 8px 8px 0;background:var(--bg-card);padding:16px 20px;margin-top:20px;font-size:13px}
+.callout strong{color:var(--fg-1)}
+.callout.neg{border-left-color:var(--escala-orange)}
+.formula{font-family:var(--font-mono);font-size:12.5px;background:var(--bg-inset);border:1px solid var(--border-subtle);border-radius:6px;padding:12px 16px;margin-top:14px;color:var(--fg-1);overflow-x:auto;white-space:pre}
+.meta-band{margin-top:24px;border:1px solid var(--escala-navy);border-radius:8px;overflow:hidden}
+.meta-band .mb-head{background:var(--escala-navy);color:var(--gray-25);padding:20px 24px}
+.meta-band .mb-head .mb-eyebrow{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gray-400);font-weight:700;margin-bottom:6px}
+.meta-band .mb-head .mb-big{font-size:34px;font-weight:700;letter-spacing:-0.02em;font-variant-numeric:tabular-nums}
+.meta-band .mb-head .mb-big span{color:var(--escala-orange)}
+.meta-band .mb-head p{color:var(--gray-300);font-size:13px;margin:6px 0 0;max-width:none}
+.meta-band .mb-body{background:var(--bg-card);padding:16px 24px;font-size:13px}
+
+.cascade{margin-top:24px;display:flex;flex-direction:column;gap:0;max-width:560px}
+.cas-step{background:var(--bg-card);border:1px solid var(--border-default);border-radius:8px;padding:16px 20px;position:relative}
+.cas-step .cs-eyebrow{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-3);font-weight:700;margin-bottom:4px}
+.cas-step strong{color:var(--fg-1);font-size:14px;display:block}
+.cas-step p{font-size:13px;color:var(--gray-600);margin:4px 0 0}
+.cas-arrow{align-self:center;width:1px;height:22px;background:var(--gray-400);position:relative}
+.cas-arrow::after{content:"";position:absolute;bottom:0;left:-4px;border-left:4.5px solid transparent;border-right:4.5px solid transparent;border-top:6px solid var(--gray-400)}
+.cas-step.hit{border-color:var(--status-positive);background:var(--status-positive-bg)}
+.cas-step.hit strong{color:var(--status-positive)}
+
+.sim{background:var(--bg-card);border:1px solid var(--border-default);border-radius:8px;margin-top:20px;overflow:hidden}
+.sim-head{padding:16px 20px;border-bottom:1px solid var(--border-subtle);background:var(--gray-50)}
+.sim-head strong{color:var(--fg-1)}
+.sim-body{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.sim-inputs{padding:20px;border-right:1px solid var(--border-subtle)}
+.sim-results{padding:20px;background:var(--gray-25)}
+.field{margin-bottom:18px}
+.field label{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--fg-1);margin-bottom:6px}
+.field label .val{font-variant-numeric:tabular-nums;color:var(--escala-orange)}
+.field .min-note{font-size:11px;color:var(--fg-3);margin-top:4px}
+input[type=range]{width:100%;accent-color:var(--escala-orange)}
+input[type=number]{width:100%;padding:8px 10px;border:1px solid var(--border-default);border-radius:6px;font-family:var(--font-sans);font-size:13px;color:var(--fg-1);background:var(--bg-card)}
+input[type=number]:focus,input[type=range]:focus{outline:2px solid var(--escala-orange);outline-offset:1px}
+.res-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border-subtle);font-size:13px}
+.res-row:last-child{border-bottom:none}
+.res-row .rr-label{color:var(--gray-600)}
+.res-row .rr-val{font-weight:700;color:var(--fg-1);font-variant-numeric:tabular-nums}
+.res-total{margin-top:12px;padding:14px 16px;border-radius:8px;border:1px solid var(--border-default);background:var(--bg-card)}
+.res-total .rt-label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-3);font-weight:700}
+.res-total .rt-val{font-size:26px;font-weight:700;color:var(--fg-1);margin-top:2px;font-variant-numeric:tabular-nums}
+.res-total.denied{border-color:var(--status-warning);background:var(--status-warning-bg)}
+.res-total.denied .rt-val{color:var(--status-warning)}
+#tot-esc .rt-val{font-size:17px;line-height:1.3;padding-top:4px}
+.sim-note{padding:12px 20px;border-top:1px solid var(--border-subtle);font-size:12px;color:var(--fg-3)}
+
+.quiz-item{background:var(--bg-card);border:1px solid var(--border-default);border-radius:8px;padding:20px;margin-top:16px}
+.quiz-q{font-weight:700;color:var(--fg-1);margin-bottom:12px;font-size:14px}
+.quiz-opt{display:block;width:100%;text-align:left;padding:10px 14px;margin-bottom:8px;border:1px solid var(--border-default);border-radius:6px;background:var(--bg-card);font-family:var(--font-sans);font-size:13px;color:var(--fg-2);cursor:pointer}
+.quiz-opt:hover{border-color:var(--gray-400)}
+.quiz-opt:focus-visible{outline:2px solid var(--escala-orange);outline-offset:1px}
+.quiz-opt.correct{border-color:var(--status-positive);background:var(--status-positive-bg);color:var(--status-positive);font-weight:700}
+.quiz-opt.incorrect{border-color:var(--status-warning);background:var(--status-warning-bg);color:var(--status-warning)}
+.quiz-fb{font-size:13px;margin-top:8px;padding:12px 14px;border-radius:6px;display:none}
+.quiz-fb.show{display:block}
+.quiz-fb.good{background:var(--status-positive-bg);color:var(--status-positive)}
+.quiz-fb.bad{background:var(--status-warning-bg);color:var(--status-warning)}
+
+.takeaways{margin-top:20px;border:1px solid var(--border-default);border-radius:8px;background:var(--bg-card);overflow:hidden}
+.takeaways li{list-style:none;padding:14px 20px;border-bottom:1px solid var(--border-subtle);font-size:13px;display:flex;gap:12px;align-items:baseline}
+.takeaways li:last-child{border-bottom:none}
+.takeaways li::before{content:"—";color:var(--escala-orange);font-weight:700}
+footer{padding-top:32px;font-size:11px;color:var(--fg-3);letter-spacing:.04em}
+
+@media(max-width:720px){
+  .rule-grid,.kpi-grid{grid-template-columns:1fr}
+  .sim-body{grid-template-columns:1fr}
+  .sim-inputs{border-right:none;border-bottom:1px solid var(--border-subtle)}
+  h1{font-size:28px}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none !important}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo">ESC<span>A</span>LA</div>
+    <div class="header-meta">Compensación variable 2026 · Módulo didáctico · Directores de proyecto</div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<div class="hero">
+  <div class="eyebrow">Grupo 1 · Directores de proyecto · Regla de acceso conjunto</div>
+  <h1>Sus tres objetivos y el desarrollo de su equipo aseguran su bono</h1>
+  <p class="lede">El acceso a su bono individual se asegura cumpliendo tres objetivos de manera conjunta. Uno de ellos, la evaluación de gerentes, se construye con su equipo: cuando cada gerente cierra el año en 80% o más, el objetivo se activa completo. Y la utilidad de los proyectos que usted dirige construye la meta de EBITDA que activa el Bono ESCALA para toda la organización.</p>
+</div>
+
+<!-- ============ 1. La regla ============ -->
+<section>
+  <div class="sec-label">01 · La regla</div>
+  <h2>Tres claves para asegurar su acceso</h2>
+  <div class="rule-grid">
+    <div class="rule-cell">
+      <div class="rule-num">Mínimo</div>
+      <strong>Cada objetivo se activa en su mínimo</strong>
+      <p>Al alcanzar el mínimo, el objetivo se activa y suma a su calificación. Los tres activados de manera conjunta aseguran el acceso completo.</p>
+    </div>
+    <div class="rule-cell">
+      <div class="rule-num">Binario</div>
+      <strong>El margen se asegura sosteniéndolo</strong>
+      <p>La desviación de margen es binaria: mantenerse dentro del umbral asegura de inmediato el 33% completo del rubro.</p>
+    </div>
+    <div class="rule-cell">
+      <div class="rule-num">Equipo</div>
+      <strong>Cada gerente en 80% activa su objetivo</strong>
+      <p>El objetivo Evaluación de Gerentes se activa cuando cada gerente del equipo cierra el año en 80% o más en Integratec. Desarrollar a cada gerente es asegurar el objetivo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2. Los objetivos del director ============ -->
+<section>
+  <div class="sec-label">02 · Grupo 1 · Directores de proyecto</div>
+  <h2>Los tres objetivos y sus mínimos</h2>
+  <p>Cada objetivo pondera 33% de la calificación. Utilidad de proyecto y evaluación de gerentes son proporcionales entre el mínimo y el 100%; la desviación de margen es binaria.</p>
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-name">Utilidad de proyecto</div>
+      <div class="kpi-min">85%</div>
+      <div class="kpi-cap">mínimo de acceso</div>
+      <div class="kpi-w">Ponderación 33% · proporcional de 85% a 100% · el resultado alcanzado se multiplica por 33%</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-name">Desviación de margen</div>
+      <div class="kpi-min">≥ −2.0%</div>
+      <div class="kpi-cap">umbral binario</div>
+      <div class="kpi-w">Ponderación 33% · al lograr el mínimo se accede al 33% del rubro; en caso contrario, cero</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-name">Evaluación de gerentes</div>
+      <div class="kpi-min">80%</div>
+      <div class="kpi-cap">mínimo de acceso</div>
+      <div class="kpi-w">Ponderación 33% · promedio anual de las calificaciones de desempeño de sus gerentes en Integratec · proporcional de 80% a 100%</div>
+    </div>
+  </div>
+  <div class="callout">
+    <strong>Su bolsa.</strong> La bolsa a repartir se calcula aplicando a la utilidad de proyecto (conjunto de proyectos del director) el porcentaje del renglón de la Tabla 1 en el que se ubique su resultado, y posteriormente los porcentajes de Distribución del bono para los Grupos 1 y 2. El Bono ESCALA corresponde a la meta de EBITDA 2026 ($30.8 mdp sin considerar bonos), proporcional entre 85% y 100% de la meta, y requiere el cumplimiento de los mínimos del bono individual; de lo contrario, queda sujeto a aprobación del Consejo.
+  </div>
+  <h3 style="margin-top:28px">Las fórmulas, objetivo por objetivo</h3>
+  <p>Dos objetivos son proporcionales y uno es binario. En los tres, el mínimo es el punto de activación: alcanzarlo activa el rubro y suma a su calificación.</p>
+  <div class="formula">Utilidad de proyecto:
+  Si Resultado ≥ 85%:        Aporte = Resultado × 33%  (objetivo activado)
+  Si Resultado &lt; 85%:        Aporte = 0  (se activa al alcanzar el 85%)
+
+Desviación de margen (binario):
+  Si Desviación ≥ −2.0%:     Aporte = 33% completo  (asegurado de inmediato)
+  Si Desviación &lt; −2.0%:     Aporte = 0  (se asegura sosteniendo el umbral)
+
+Evaluación de gerentes:
+  Si cada gerente ≥ 80% anual:  Aporte = Promedio del equipo × 33%  (activado)
+  El objetivo se activa cuando todo el equipo alcanza el mínimo
+
+Calificación   = Aporte utilidad + Aporte margen + Aporte gerentes
+Bono individual = Bolsa (Tabla 1 y distribución) × Calificación</div>
+  <table>
+    <thead>
+      <tr><th>Situación</th><th class="num">Valor</th><th class="num">Aporte</th><th>Estado</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Utilidad exactamente en el mínimo</td><td class="num">85%</td><td class="num">28.1%</td><td><span class="badge ok">Objetivo activado</span></td></tr>
+      <tr class="zeroed"><td>Utilidad a un punto del mínimo</td><td class="num">84%</td><td class="num">0%</td><td><span class="badge warn">A 1 punto de activarse</span></td></tr>
+      <tr><td>Margen dentro del umbral</td><td class="num">−2.0%</td><td class="num">33.0%</td><td><span class="badge ok">Asegurado completo</span></td></tr>
+      <tr class="zeroed"><td>Margen a una décima del umbral</td><td class="num">−2.1%</td><td class="num">0%</td><td><span class="badge warn">A 1 décima de asegurarse</span></td></tr>
+      <tr><td>Todos los gerentes en 80% o más</td><td class="num">Promedio 88%</td><td class="num">29.0%</td><td><span class="badge ok">Objetivo activado</span></td></tr>
+      <tr class="zeroed"><td>Un gerente en 79%</td><td class="num">Promedio 90%</td><td class="num">0%</td><td><span class="badge warn">Se activa al llevarlo a 80%</span></td></tr>
+    </tbody>
+  </table>
+  <div class="callout">
+    <strong>Cada punto está a su alcance.</strong> En los tres objetivos, la distancia entre "por activar" y "asegurado" puede ser de un punto porcentual o una décima de margen. El seguimiento mensual de utilidad, margen y desempeño de gerentes le permite cerrar esas brechas cuando todavía hay tiempo de hacerlo: es la forma más directa de asegurar el bono completo.
+  </div>
+</section>
+
+<!-- ============ 3. Ejemplo que cumple ============ -->
+<section>
+  <div class="sec-label">03 · Ejemplo A</div>
+  <h2>Director que cumple los tres objetivos</h2>
+  <p>Director con bolsa ilustrativa de $500,000 conforme a Tabla 1 y distribución de grupos. Sus tres objetivos superan el mínimo, por lo que accede al bono y cada rubro aporta según su regla.</p>
+  <table>
+    <thead>
+      <tr><th>Objetivo</th><th class="num">Resultado</th><th class="num">Mínimo</th><th>Acceso</th><th class="num">Cálculo</th><th class="num">Aporte</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Utilidad de proyecto</td><td class="num">92%</td><td class="num">85%</td><td><span class="badge ok">Activado</span></td><td class="num">92% × 33%</td><td class="num">30.4%</td></tr>
+      <tr><td>Desviación de margen</td><td class="num">−1.2%</td><td class="num">≥ −2.0%</td><td><span class="badge ok">Activado</span></td><td class="num">Binario</td><td class="num">33.0%</td></tr>
+      <tr><td>Evaluación de gerentes</td><td class="num">88%</td><td class="num">80%</td><td><span class="badge ok">Activado</span></td><td class="num">88% × 33%</td><td class="num">29.0%</td></tr>
+      <tr class="total"><td colspan="5">Calificación de objetivos</td><td class="num">92.4%</td></tr>
+    </tbody>
+  </table>
+  <table>
+    <thead>
+      <tr><th>Concepto</th><th class="num">Bolsa (ilustrativa)</th><th class="num">Calificación</th><th class="num">Monto</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Bono individual</td><td class="num">$500,000</td><td class="num">92.4%</td><td class="num">$462,000</td></tr>
+      <tr><td>Bono ESCALA</td><td class="num" colspan="3">Aplica conforme a la meta de EBITDA y la distribución vigente</td></tr>
+    </tbody>
+  </table>
+  <div class="callout">
+    <strong>Nota del ejemplo.</strong> Todos los gerentes del equipo cerraron con evaluación anual igual o mayor a 80% en Integratec; por eso el objetivo se calcula con el promedio (88%). La bolsa de $500,000 es ilustrativa: el monto real depende de la utilidad de proyecto, la Tabla 1 y los porcentajes de distribución autorizados.
+  </div>
+</section>
+
+<!-- ============ 4. La cascada desde un gerente ============ -->
+<section>
+  <div class="sec-label">04 · Ejemplo B</div>
+  <h2>Desarrollar a cada gerente asegura su objetivo</h2>
+  <p>Mismo director, mismos resultados financieros. De sus cinco gerentes, cuatro cierran entre 88% y 95%, y uno se encuentra en 78%: acompañarlo hasta el 80% activa el objetivo completo y asegura el acceso al bono.</p>
+  <table>
+    <thead>
+      <tr><th>Objetivo</th><th class="num">Resultado</th><th class="num">Mínimo</th><th>Estado</th><th class="num">Aporte</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Utilidad de proyecto</td><td class="num">92%</td><td class="num">85%</td><td><span class="badge ok">Activado</span></td><td class="num">—</td></tr>
+      <tr><td>Desviación de margen</td><td class="num">−1.2%</td><td class="num">≥ −2.0%</td><td><span class="badge ok">Asegurado</span></td><td class="num">—</td></tr>
+      <tr class="zeroed"><td>Evaluación de gerentes</td><td class="num">Promedio 90% · un gerente en 78%</td><td class="num">80%</td><td><span class="badge warn">Se activa al llevarlo a 80%</span></td><td class="num">0% hasta que todo el equipo alcance el mínimo</td></tr>
+      <tr class="total"><td colspan="4">Acceso al bono individual</td><td class="num">Se asegura al activar los tres objetivos</td></tr>
+    </tbody>
+  </table>
+  <table>
+    <thead>
+      <tr><th>Concepto</th><th class="num">Con el equipo completo en 80% o más</th><th class="num">Con un gerente en 78%</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Bono individual</td><td class="num">$462,000 asegurados</td><td class="num">Pendiente de activar</td></tr>
+      <tr><td>Bono ESCALA</td><td class="num">Activado</td><td class="num">Sujeto a aprobación del Consejo</td></tr>
+    </tbody>
+  </table>
+  <div class="callout">
+    <strong>Cada gerente cuenta.</strong> El objetivo se activa cuando cada integrante del equipo alcanza el 80%: por eso el desarrollo de cada gerente es una inversión directa en el bono del director. En este ejemplo, acompañar a un gerente de 78% a 80% asegura $462,000. El seguimiento mensual en Integratec convierte esa brecha en un plan de acción con meses de anticipación.
+  </div>
+  <h3 style="margin-top:28px">Qué asegura cada escenario</h3>
+  <table>
+    <thead>
+      <tr><th>Escenario</th><th class="num">Utilidad</th><th class="num">Margen</th><th class="num">Eval. gerentes</th><th>Resultado</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>A · Los tres activados</td><td class="num">92%</td><td class="num">−1.2%</td><td class="num">88% (todos ≥ 80%)</td><td><span class="badge ok">Bono asegurado · calificación 92.4%</span></td></tr>
+      <tr><td>B · Un gerente en 78%</td><td class="num">92%</td><td class="num">−1.2%</td><td class="num">Promedio 90%</td><td><span class="badge warn">Se asegura al llevar al gerente a 80%</span></td></tr>
+      <tr><td>C · Margen en −2.4%</td><td class="num">95%</td><td class="num">−2.4%</td><td class="num">90%</td><td><span class="badge warn">Se asegura al sostener el margen en −2.0%</span></td></tr>
+      <tr><td>D · Utilidad en 83%</td><td class="num">83%</td><td class="num">−1.0%</td><td class="num">90%</td><td><span class="badge warn">Se asegura al llevar la utilidad a 85%</span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ============ 5. Diagrama de cascada ============ -->
+<section>
+  <div class="sec-label">05 · Cascada</div>
+  <h2>Cómo el desarrollo de su equipo asegura su bono</h2>
+  <div class="cascade">
+    <div class="cas-step hit">
+      <div class="cs-eyebrow">El equipo</div>
+      <strong>Cada gerente registra su evaluación mensual y cierra el año en 80% o más</strong>
+      <p>Cada registro mensual en Integratec suma a la calificación anual de cada gerente. El acompañamiento del director convierte los registros en una trayectoria previsible.</p>
+    </div>
+    <div class="cas-arrow"></div>
+    <div class="cas-step hit">
+      <div class="cs-eyebrow">El objetivo</div>
+      <strong>Su objetivo Evaluación de Gerentes se activa completo</strong>
+      <p>Con todo el equipo en 80% o más, el objetivo se calcula con el promedio y aporta hasta 33% de su calificación.</p>
+    </div>
+    <div class="cas-arrow"></div>
+    <div class="cas-step hit">
+      <div class="cs-eyebrow">Su bono</div>
+      <strong>Usted asegura el acceso a su bono individual</strong>
+      <p>Con los tres objetivos activados de manera conjunta, el acceso queda asegurado y el Bono ESCALA se suma cuando la empresa alcanza su meta.</p>
+    </div>
+  </div>
+  <div class="callout">
+    <strong>Ventaja de gestión.</strong> El seguimiento mensual en Integratec le muestra con meses de anticipación a qué gerente acompañar para que todo el equipo cierre en 80% o más. Un plan de desarrollo iniciado a tiempo asegura el objetivo con holgura.
+  </div>
+</section>
+
+<!-- ============ 6. La meta de ESCALA ============ -->
+<section>
+  <div class="sec-label">06 · Meta institucional</div>
+  <h2>La meta de ESCALA se construye en sus proyectos</h2>
+  <div class="meta-band">
+    <div class="mb-head">
+      <div class="mb-eyebrow">Meta EBITDA 2026 · sin considerar bonos</div>
+      <div class="mb-big">$30.8 <span>mdp</span></div>
+      <p>La bolsa del Bono ESCALA se activa a partir del 85% de esta meta y crece de manera proporcional hasta asegurarse completa en el 100%.</p>
+    </div>
+    <div class="mb-body">
+      La utilidad de los proyectos que usted dirige es el principal insumo del EBITDA institucional. La meta no es un supuesto externo: es el resultado agregado de las direcciones de proyecto. Cada punto de utilidad que su dirección entrega suma dos veces: aumenta su propia bolsa de Tabla 1 y acerca a toda la organización a la bolsa del Bono ESCALA, que beneficia a directores, gerentes y directores staff por igual.
+    </div>
+  </div>
+  <table>
+    <thead>
+      <tr><th>Cumplimiento de la meta</th><th class="num">EBITDA (mdp)</th><th>Bolsa del Bono ESCALA</th><th>Alcance</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>100%</td><td class="num">$30.8</td><td><span class="badge ok">Asegurada completa</span></td><td>Todos los grupos</td></tr>
+      <tr><td>95%</td><td class="num">$29.3</td><td><span class="badge ok">Activada · proporcional al 95%</span></td><td>Todos los grupos</td></tr>
+      <tr><td>90%</td><td class="num">$27.7</td><td><span class="badge ok">Activada · proporcional al 90%</span></td><td>Todos los grupos</td></tr>
+      <tr><td>85% (punto de activación)</td><td class="num">$26.2</td><td><span class="badge ok">Activada · proporcional al 85%</span></td><td>Todos los grupos</td></tr>
+      <tr class="zeroed"><td>Menos de 85%</td><td class="num">&lt; $26.2</td><td><span class="badge warn">Se activa a partir del 85%</span></td><td>Pendiente para todos los grupos</td></tr>
+    </tbody>
+  </table>
+  <div class="callout">
+    <strong>Doble contribución del director.</strong> Sus objetivos individuales aseguran su acceso; la utilidad de sus proyectos construye la meta que activa la bolsa institucional. Cada punto de utilidad recuperado en un proyecto acerca a toda la organización a la bolsa completa: alcanzar el 85% la activa y llegar al 100% la asegura íntegra para directores, gerentes y directores staff. Pocas decisiones de gestión rinden a tantas personas a la vez.
+  </div>
+</section>
+
+<!-- ============ 6. Simulador ============ -->
+<section>
+  <div class="sec-label">07 · Simulador</div>
+  <h2>Pruebe los escenarios</h2>
+  <p>Mueva los resultados y observe cómo se activa cada objetivo (proporcional, binario y de equipo) y cómo el avance hacia la meta institucional activa el Bono ESCALA.</p>
+
+  <div class="sim">
+    <div class="sim-head"><strong>Bono individual del director</strong></div>
+    <div class="sim-body">
+      <div class="sim-inputs">
+        <div class="field">
+          <label for="bolsa">Bolsa asignada (MXN, ilustrativa)</label>
+          <input type="number" id="bolsa" value="500000" min="1" step="10000">
+          <div class="min-note">El monto real se determina con la utilidad de proyecto, la Tabla 1 y la distribución de grupos</div>
+        </div>
+        <div class="field">
+          <label for="util">Utilidad de proyecto <span class="val" id="vutil">92%</span></label>
+          <input type="range" id="util" min="70" max="100" value="92">
+          <div class="min-note">Se activa en 85% · proporcional hasta 100%</div>
+        </div>
+        <div class="field">
+          <label for="margen">Desviación de margen <span class="val" id="vmargen">−1.2%</span></label>
+          <input type="range" id="margen" min="-40" max="0" value="-12">
+          <div class="min-note">Se asegura completo al sostenerse en −2.0% o mejor</div>
+        </div>
+        <div class="field">
+          <label for="prom">Promedio anual del equipo de gerentes <span class="val" id="vprom">88%</span></label>
+          <input type="range" id="prom" min="70" max="100" value="88">
+          <div class="min-note">Se activa en 80% · proporcional hasta 100%</div>
+        </div>
+        <div class="field">
+          <label for="peor">Evaluación anual más baja del equipo <span class="val" id="vpeor">85%</span></label>
+          <input type="range" id="peor" min="60" max="100" value="85">
+          <div class="min-note">El objetivo se activa cuando cada gerente alcanza el 80%</div>
+        </div>
+        <div class="field">
+          <label for="ebitda">Cumplimiento de la meta EBITDA de ESCALA <span class="val" id="vebitda">100%</span></label>
+          <input type="range" id="ebitda" min="70" max="100" value="100">
+          <div class="min-note">Meta 2026: $30.8 mdp · la bolsa ESCALA se activa a partir de 85% y crece hasta el 100%</div>
+        </div>
+      </div>
+      <div class="sim-results">
+        <div class="res-row"><span class="rr-label">Utilidad de proyecto</span><span class="rr-val" id="rutil">—</span></div>
+        <div class="res-row"><span class="rr-label">Desviación de margen</span><span class="rr-val" id="rmargen">—</span></div>
+        <div class="res-row"><span class="rr-label">Evaluación de gerentes</span><span class="rr-val" id="rprom">—</span></div>
+        <div class="res-row"><span class="rr-label">Calificación de objetivos</span><span class="rr-val" id="rcal">—</span></div>
+        <div class="res-total" id="tot-ind">
+          <div class="rt-label">Bono individual (bolsa × calificación)</div>
+          <div class="rt-val" id="monto-ind">—</div>
+        </div>
+        <div class="res-total" id="tot-esc" style="margin-top:10px">
+          <div class="rt-label">Bono ESCALA</div>
+          <div class="rt-val" id="monto-esc">—</div>
+        </div>
+      </div>
+    </div>
+    <div class="sim-note">Supuestos: bolsa ilustrativa y factor de EBITDA aplicado de forma proporcional directa. Cifras para fines didácticos; el cálculo oficial lo valida Administración y lo autoriza Dirección General.</div>
+  </div>
+</section>
+
+<!-- ============ 8. Condiciones de acceso ============ -->
+<section>
+  <div class="sec-label">08 · Condiciones de acceso</div>
+  <h2>Requisitos para recibir el pago</h2>
+  <p>La vigencia laboral completa el acceso al pago.</p>
+  <table>
+    <thead>
+      <tr><th>Condición</th><th>Regla para el Grupo 1</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Vigencia laboral</td><td>Estar activo en la empresa al momento del pago (marzo de 2027)</td></tr>
+      <tr><td>Antigüedad mínima</td><td>No aplica al Grupo 1; el requisito de 6 meses corresponde a los Grupos 2 y 3</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ============ 9. Verificación ============ -->
+<section>
+  <div class="sec-label">09 · Verificación</div>
+  <h2>Compruebe su comprensión</h2>
+
+  <div class="quiz-item" data-correct="2">
+    <div class="quiz-q">1. Su utilidad de proyecto cierra en 92%, la desviación de margen en −1.5% y el promedio de sus gerentes en 90%, pero uno de ellos cierra en 76%. ¿Accede a su bono individual?</div>
+    <button class="quiz-opt" data-i="0">Sí, porque el promedio del equipo supera el 80%</button>
+    <button class="quiz-opt" data-i="1">Sí, pero con el rubro de gerentes descontado proporcionalmente</button>
+    <button class="quiz-opt" data-i="2">Todavía no: el objetivo Evaluación de Gerentes se activa cuando cada gerente alcanza el 80%, por lo que queda pendiente hasta lograrlo</button>
+    <div class="quiz-fb"></div>
+  </div>
+
+  <div class="quiz-item" data-correct="0">
+    <div class="quiz-q">2. Su desviación de margen cierra en −2.4%, con umbral de ≥ −2.0%. ¿Cuánto aporta ese objetivo a su calificación?</div>
+    <button class="quiz-opt" data-i="0">Cero por ahora: el objetivo es binario y se asegura completo al sostener el margen en −2.0% o mejor, lo que además activa el acceso conjunto</button>
+    <button class="quiz-opt" data-i="1">Un aporte proporcional a la distancia respecto del umbral</button>
+    <button class="quiz-opt" data-i="2">El 33% menos una penalización</button>
+    <div class="quiz-fb"></div>
+  </div>
+
+  <div class="quiz-item" data-correct="1">
+    <div class="quiz-q">3. Uno de sus gerentes no registró su evaluación mensual en Integratec en dos periodos. ¿Cómo afecta esto?</div>
+    <button class="quiz-opt" data-i="0">No afecta si el gerente cumple sus KPI de bono</button>
+    <button class="quiz-opt" data-i="1">Cada registro realizado suma; los periodos sin registro cuentan como cero, por lo que asegurar el registro mensual protege la calificación anual del gerente y su objetivo</button>
+    <button class="quiz-opt" data-i="2">Los periodos sin registro se excluyen del promedio</button>
+    <div class="quiz-fb"></div>
+  </div>  <div class="quiz-item" data-correct="1">
+    <div class="quiz-q">4. Usted cumple sus tres objetivos con una calificación de 92%, pero ESCALA cierra el año en 83% de su meta de EBITDA. ¿Qué ocurre con los bonos?</div>
+    <button class="quiz-opt" data-i="0">Recibe ambos bonos, porque sus objetivos individuales se cumplieron</button>
+    <button class="quiz-opt" data-i="1">Recibe su bono individual asegurado; la bolsa del Bono ESCALA se activa en los ejercicios en que la empresa alcanza al menos el 85% de la meta</button>
+    <button class="quiz-opt" data-i="2">No recibe ningún bono, porque la meta institucional no se alcanzó</button>
+    <div class="quiz-fb"></div>
+  </div>
+</section>
+
+<!-- ============ 10. Puntos clave ============ -->
+<section style="border-bottom:none">
+  <div class="sec-label">10 · Puntos clave</div>
+  <h2>Lo que debe recordar</h2>
+  <ul class="takeaways">
+    <li>Su bono se asegura activando los tres objetivos de manera conjunta: utilidad de proyecto (se activa en 85%), desviación de margen (se asegura completo al sostenerse en −2.0% o mejor) y evaluación de gerentes (se activa en 80%).</li>
+    <li>El margen es binario: sostener el umbral asegura de inmediato el 33% completo del rubro.</li>
+    <li>El objetivo Evaluación de Gerentes se activa cuando cada gerente del equipo cierra en 80% o más: desarrollar a cada gerente es una inversión directa en su propio bono.</li>
+    <li>Cada registro mensual en Integratec suma a la calificación anual de cada gerente; asegurar la constancia del registro protege el objetivo de todo el equipo.</li>
+    <li>La meta de EBITDA 2026 es $30.8 mdp sin considerar bonos. La bolsa del Bono ESCALA se activa a partir del 85% de la meta y crece hasta asegurarse completa en el 100%, para todos los grupos.</li>
+    <li>La utilidad de sus proyectos es el principal insumo de esa meta: cada punto entregado suma a su bolsa de Tabla 1 y acerca a toda la organización al Bono ESCALA.</li>
+    <li>Con los tres objetivos activados, el Bono ESCALA se suma de manera automática; en otros casos, queda sujeto a aprobación del Consejo.</li>
+    <li>El pago se asegura permaneciendo activo en la empresa en marzo de 2027.</li>
+  </ul>
+  <footer>ESCALA · Política de compensación variable 2026 v3 · Material didáctico interno. Las cifras de los ejemplos son ilustrativas; los cálculos oficiales los valida Administración y los autoriza Dirección General.</footer>
+</section>
+
+</div>
+
+<script>
+(function(){
+  var fmt = function(n){ return "$" + Math.round(n).toLocaleString("es-MX"); };
+
+  function calc(){
+    var bolsa = parseFloat(document.getElementById("bolsa").value) || 0;
+    var util = parseInt(document.getElementById("util").value, 10);
+    var margen = parseInt(document.getElementById("margen").value, 10) / 10; // slider en décimas
+    var prom = parseInt(document.getElementById("prom").value, 10);
+    var peor = parseInt(document.getElementById("peor").value, 10);
+    var e = parseInt(document.getElementById("ebitda").value, 10);
+
+    document.getElementById("vutil").textContent = util + "%";
+    document.getElementById("vmargen").textContent = (margen < 0 ? "−" : "") + Math.abs(margen).toFixed(1) + "%";
+    document.getElementById("vprom").textContent = prom + "%";
+    document.getElementById("vpeor").textContent = peor + "%";
+    document.getElementById("vebitda").textContent = e + "%";
+
+    var ok = true;
+    var suma = 0;
+
+    var rutil = document.getElementById("rutil");
+    if (util >= 85){
+      var a1 = util * 0.33;
+      suma += a1;
+      rutil.textContent = a1.toFixed(1) + "% · activado";
+      rutil.style.color = "";
+    } else {
+      ok = false;
+      rutil.textContent = "Se activa en 85%";
+      rutil.style.color = "var(--status-warning)";
+    }
+
+    var rmargen = document.getElementById("rmargen");
+    if (margen >= -2.0){
+      suma += 33;
+      rmargen.textContent = "33.0% · asegurado";
+      rmargen.style.color = "";
+    } else {
+      ok = false;
+      rmargen.textContent = "Se asegura desde −2.0%";
+      rmargen.style.color = "var(--status-warning)";
+    }
+
+    var rprom = document.getElementById("rprom");
+    if (peor < 80){
+      ok = false;
+      rprom.textContent = "Se activa al llevar a cada gerente a 80%";
+      rprom.style.color = "var(--status-warning)";
+    } else if (prom >= 80){
+      var a3 = prom * 0.33;
+      suma += a3;
+      rprom.textContent = a3.toFixed(1) + "% · activado";
+      rprom.style.color = "";
+    } else {
+      ok = false;
+      rprom.textContent = "Se activa con promedio de 80%";
+      rprom.style.color = "var(--status-warning)";
+    }
+
+    var rcal = document.getElementById("rcal");
+    var totInd = document.getElementById("tot-ind");
+    var totEsc = document.getElementById("tot-esc");
+    var mInd = document.getElementById("monto-ind");
+    var mEsc = document.getElementById("monto-esc");
+
+    if (ok){
+      rcal.textContent = suma.toFixed(1) + "%";
+      rcal.style.color = "";
+      totInd.classList.remove("denied");
+      mInd.textContent = fmt(bolsa * suma / 100) + " asegurados";
+    } else {
+      rcal.textContent = "Se asegura al activar los tres objetivos";
+      rcal.style.color = "var(--status-warning)";
+      totInd.classList.add("denied");
+      mInd.textContent = "Por activar";
+    }
+    var mdp = (30.8 * e / 100).toFixed(1);
+    if (e < 85){
+      totEsc.classList.add("denied");
+      mEsc.textContent = "Se activa con la meta al 85% · EBITDA $" + mdp + " mdp";
+    } else if (ok){
+      totEsc.classList.remove("denied");
+      mEsc.textContent = "Bolsa activada al " + e + "% · EBITDA $" + mdp + " mdp";
+    } else {
+      totEsc.classList.add("denied");
+      mEsc.textContent = "Sujeto a aprobación del Consejo";
+    }
+  }
+
+  ["bolsa","util","margen","prom","peor","ebitda"].forEach(function(id){
+    document.getElementById(id).addEventListener("input", calc);
+  });
+  calc();
+
+  document.querySelectorAll(".quiz-item").forEach(function(item){
+    var correct = parseInt(item.getAttribute("data-correct"), 10);
+    var fb = item.querySelector(".quiz-fb");
+    var msgs = {
+      good: "Correcto. El bono se asegura activando los tres objetivos de manera conjunta: cada mínimo alcanzado cuenta.",
+      bad: "Aún no. Recuerde la clave: cada objetivo se activa al alcanzar su mínimo, y los tres activados de manera conjunta aseguran el bono completo."
+    };
+    item.querySelectorAll(".quiz-opt").forEach(function(btn){
+      btn.addEventListener("click", function(){
+        item.querySelectorAll(".quiz-opt").forEach(function(b){
+          b.classList.remove("correct","incorrect");
+          b.disabled = true;
+        });
+        var i = parseInt(btn.getAttribute("data-i"), 10);
+        if (i === correct){
+          btn.classList.add("correct");
+          fb.textContent = msgs.good;
+          fb.className = "quiz-fb show good";
+        } else {
+          btn.classList.add("incorrect");
+          item.querySelector('[data-i="' + correct + '"]').classList.add("correct");
+          fb.textContent = msgs.bad;
+          fb.className = "quiz-fb show bad";
+        }
+      });
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
