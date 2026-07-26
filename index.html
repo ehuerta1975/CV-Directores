@@ -87,6 +87,24 @@ tr.zeroed td{color:var(--status-warning)}
 .callout strong{color:var(--fg-1)}
 .callout.neg{border-left-color:var(--escala-orange)}
 .formula{font-family:var(--font-mono);font-size:12.5px;background:var(--bg-inset);border:1px solid var(--border-subtle);border-radius:6px;padding:12px 16px;margin-top:14px;color:var(--fg-1);overflow-x:auto;white-space:pre}
+/* Árbol de distribución del bono */
+.dist-tree{margin-top:24px}
+.dt-root{border:1px solid var(--escala-navy);background:var(--escala-navy);color:var(--gray-25);border-radius:8px;padding:14px 20px;text-align:center;font-weight:700;max-width:420px;margin:0 auto}
+.dt-root span{display:block;font-weight:400;font-size:12px;color:var(--gray-300);margin-top:4px}
+.dt-link{width:1px;height:20px;background:var(--gray-400);margin:0 auto}
+.dt-branches{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.dt-branch{border:1px solid var(--border-default);border-radius:8px;background:var(--bg-card);overflow:hidden}
+.dt-comp{padding:12px 16px;border-bottom:1px solid var(--border-subtle);background:var(--gray-50)}
+.dt-comp strong{color:var(--fg-1);font-size:14px}
+.dt-comp .dt-pct{float:right;font-weight:700;color:var(--escala-orange);font-size:14px}
+.dt-comp p{font-size:12px;color:var(--gray-600);margin:4px 0 0;max-width:none}
+.dt-split{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border-subtle)}
+.dt-part{background:var(--bg-card);padding:12px 16px;text-align:center}
+.dt-part .dp-pct{font-size:24px;font-weight:700;color:var(--fg-1)}
+.dt-part.hl .dp-pct{color:var(--escala-orange)}
+.dt-part .dp-who{font-size:12px;color:var(--gray-600);margin-top:2px}
+.dt-cap{padding:10px 16px;border-top:1px solid var(--border-subtle);font-size:12px;color:var(--fg-3)}
+@media(max-width:720px){.dt-branches{grid-template-columns:1fr}}
 .meta-band{margin-top:24px;border:1px solid var(--escala-navy);border-radius:8px;overflow:hidden}
 .meta-band .mb-head{background:var(--escala-navy);color:var(--gray-25);padding:20px 24px}
 .meta-band .mb-head .mb-eyebrow{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gray-400);font-weight:700;margin-bottom:6px}
@@ -187,7 +205,7 @@ footer{padding-top:32px;font-size:11px;color:var(--fg-3);letter-spacing:.04em}
     <div class="rule-cell">
       <div class="rule-num">Binario</div>
       <strong>El margen se asegura sosteniéndolo</strong>
-      <p>La desviación de margen es binaria: mantenerse dentro del umbral asegura de inmediato el 33% completo del rubro.</p>
+      <p>La desviación de margen es binaria: mantenerse dentro del umbral asegura de inmediato el 33.3% completo del rubro.</p>
     </div>
     <div class="rule-cell">
       <div class="rule-num">Equipo</div>
@@ -201,7 +219,7 @@ footer{padding-top:32px;font-size:11px;color:var(--fg-3);letter-spacing:.04em}
 <section>
   <div class="sec-label">02 · Grupo 1 · Directores de proyecto</div>
   <h2>Los tres objetivos y sus mínimos</h2>
-  <p>Cada objetivo pondera 33% de la calificación. Utilidad de proyecto y evaluación de gerentes son proporcionales entre el mínimo y el 100%; la desviación de margen es binaria.</p>
+  <p>Cada objetivo pondera 33.3% de la calificación. Utilidad de proyecto y evaluación de gerentes son proporcionales entre el mínimo y el 100%; la desviación de margen es binaria.</p>
   <div class="kpi-grid">
     <div class="kpi-card">
       <div class="kpi-name">Utilidad de proyecto</div>
@@ -228,15 +246,15 @@ footer{padding-top:32px;font-size:11px;color:var(--fg-3);letter-spacing:.04em}
   <h3 style="margin-top:28px">Las fórmulas, objetivo por objetivo</h3>
   <p>Dos objetivos son proporcionales y uno es binario. En los tres, el mínimo es el punto de activación: alcanzarlo activa el rubro y suma a su calificación.</p>
   <div class="formula">Utilidad de proyecto:
-  Si Resultado ≥ 85%:        Aporte = Resultado × 33%  (objetivo activado)
+  Si Resultado ≥ 85%:        Aporte = Resultado × 33.3%  (objetivo activado)
   Si Resultado &lt; 85%:        Aporte = 0  (se activa al alcanzar el 85%)
 
 Desviación de margen (binario):
-  Si Desviación ≥ −2.0%:     Aporte = 33% completo  (asegurado de inmediato)
+  Si Desviación ≥ −2.0%:     Aporte = 33.3% completo  (asegurado de inmediato)
   Si Desviación &lt; −2.0%:     Aporte = 0  (se asegura sosteniendo el umbral)
 
 Evaluación de gerentes:
-  Si cada gerente ≥ 80% anual:  Aporte = Promedio del equipo × 33%  (activado)
+  Si cada gerente ≥ 80% anual:  Aporte = Promedio del equipo × 33.3%  (activado)
   El objetivo se activa cuando todo el equipo alcanza el mínimo
 
 Calificación   = Aporte utilidad + Aporte margen + Aporte gerentes
@@ -246,11 +264,11 @@ Bono individual = Bolsa (Tabla 1 y distribución) × Calificación</div>
       <tr><th>Situación</th><th class="num">Valor</th><th class="num">Aporte</th><th>Estado</th></tr>
     </thead>
     <tbody>
-      <tr><td>Utilidad exactamente en el mínimo</td><td class="num">85%</td><td class="num">28.1%</td><td><span class="badge ok">Objetivo activado</span></td></tr>
+      <tr><td>Utilidad exactamente en el mínimo</td><td class="num">85%</td><td class="num">28.3%</td><td><span class="badge ok">Objetivo activado</span></td></tr>
       <tr class="zeroed"><td>Utilidad a un punto del mínimo</td><td class="num">84%</td><td class="num">0%</td><td><span class="badge warn">A 1 punto de activarse</span></td></tr>
-      <tr><td>Margen dentro del umbral</td><td class="num">−2.0%</td><td class="num">33.0%</td><td><span class="badge ok">Asegurado completo</span></td></tr>
+      <tr><td>Margen dentro del umbral</td><td class="num">−2.0%</td><td class="num">33.3%</td><td><span class="badge ok">Asegurado completo</span></td></tr>
       <tr class="zeroed"><td>Margen a una décima del umbral</td><td class="num">−2.1%</td><td class="num">0%</td><td><span class="badge warn">A 1 décima de asegurarse</span></td></tr>
-      <tr><td>Todos los gerentes en 80% o más</td><td class="num">Promedio 88%</td><td class="num">29.0%</td><td><span class="badge ok">Objetivo activado</span></td></tr>
+      <tr><td>Todos los gerentes en 80% o más</td><td class="num">Promedio 88%</td><td class="num">29.3%</td><td><span class="badge ok">Objetivo activado</span></td></tr>
       <tr class="zeroed"><td>Un gerente en 79%</td><td class="num">Promedio 90%</td><td class="num">0%</td><td><span class="badge warn">Se activa al llevarlo a 80%</span></td></tr>
     </tbody>
   </table>
@@ -259,39 +277,105 @@ Bono individual = Bolsa (Tabla 1 y distribución) × Calificación</div>
   </div>
 </section>
 
-<!-- ============ 3. Ejemplo que cumple ============ -->
+<!-- ============ 3. La bolsa: Tabla 1 y distribución ============ -->
 <section>
-  <div class="sec-label">03 · Ejemplo A</div>
-  <h2>Director que cumple los tres objetivos</h2>
-  <p>Director con bolsa ilustrativa de $500,000 conforme a Tabla 1 y distribución de grupos. Sus tres objetivos superan el mínimo, por lo que accede al bono y cada rubro aporta según su regla.</p>
+  <div class="sec-label">03 · La bolsa</div>
+  <h2>De la utilidad de proyecto a los bonos: Tabla 1 y distribución</h2>
+  <p>Todo parte de una sola Bolsa Bono. Primero, la Tabla 1 determina su tamaño a partir de la utilidad de proyecto lograda. Después, la bolsa se distribuye en el orden del siguiente cuadro: 50% al componente Individual y 50% al componente ESCALA, y dentro de cada componente se reparte entre los directores (D1 y D2) y los gerentes del equipo.</p>
+
+  <h3 style="margin-top:28px">Paso 1 · La Tabla 1 determina el tamaño de la Bolsa Bono</h3>
+  <p>El renglón se determina con su porcentaje de cumplimiento de la meta de utilidad de proyecto. A partir del 100%, cada 5 puntos adicionales incrementan el porcentaje de bolsa: superar la meta se premia de manera creciente. Las columnas de utilidad y bolsa muestran el ejemplo de una meta de $100.0 mdp.</p>
+  <table>
+    <thead>
+      <tr><th>Meta</th><th class="num">Individual</th><th class="num">Escala</th><th class="num">Incremental</th><th class="num">Bolsa %</th><th class="num">Utilidad de proyecto (mdp)</th><th class="num">Bolsa (mdp)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>85%</td><td class="num">6%</td><td class="num">6%</td><td class="num">0%</td><td class="num">11%</td><td class="num">$85.0</td><td class="num">$9.4</td></tr>
+      <tr><td>90%</td><td class="num">6%</td><td class="num">6%</td><td class="num">0%</td><td class="num">11%</td><td class="num">$90.0</td><td class="num">$9.9</td></tr>
+      <tr><td>95%</td><td class="num">6%</td><td class="num">6%</td><td class="num">0%</td><td class="num">11%</td><td class="num">$95.0</td><td class="num">$10.5</td></tr>
+      <tr class="total"><td>100%</td><td class="num">6%</td><td class="num">6%</td><td class="num">0%</td><td class="num">11%</td><td class="num">$100.0</td><td class="num">$11.0</td></tr>
+      <tr><td>+5%</td><td class="num">7%</td><td class="num">7%</td><td class="num">2%</td><td class="num">13%</td><td class="num">$105.0</td><td class="num">$13.7</td></tr>
+      <tr><td>+10%</td><td class="num">8%</td><td class="num">8%</td><td class="num">4%</td><td class="num">15%</td><td class="num">$110.0</td><td class="num">$16.5</td></tr>
+      <tr><td>+15%</td><td class="num">9%</td><td class="num">9%</td><td class="num">6%</td><td class="num">17%</td><td class="num">$115.0</td><td class="num">$19.6</td></tr>
+      <tr><td>+20%</td><td class="num">10%</td><td class="num">10%</td><td class="num">8%</td><td class="num">19%</td><td class="num">$120.0</td><td class="num">$22.8</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="margin-top:28px">Paso 2 · Distribución del bono</h3>
+  <div class="dist-tree">
+    <div class="dt-root">Bolsa Bono<span>Utilidad de proyecto lograda × porcentaje del renglón de Tabla 1</span></div>
+    <div class="dt-link"></div>
+    <div class="dt-branches">
+      <div class="dt-branch">
+        <div class="dt-comp"><span class="dt-pct">50%</span><strong>Individual</strong>
+          <p>Se asegura con los tres KPI del director: utilidad de proyecto, desviación de margen y evaluación de gerentes (33.3% cada uno).</p>
+        </div>
+        <div class="dt-split">
+          <div class="dt-part hl"><div class="dp-pct">40%</div><div class="dp-who">Directores (D1 y D2)</div></div>
+          <div class="dt-part"><div class="dp-pct">60%</div><div class="dp-who">Gerentes del equipo</div></div>
+        </div>
+        <div class="dt-cap">Los gerentes están topados a 2 meses de bono</div>
+      </div>
+      <div class="dt-branch">
+        <div class="dt-comp"><span class="dt-pct">50%</span><strong>ESCALA</strong>
+          <p>Se asegura con un solo KPI de ponderación 100%: la meta de EBITDA de $30.8 mdp, activada a partir del 85% y proporcional hasta el 100%.</p>
+        </div>
+        <div class="dt-split">
+          <div class="dt-part hl"><div class="dp-pct">80%</div><div class="dp-who">Directores (D1 y D2)</div></div>
+          <div class="dt-part"><div class="dp-pct">20%</div><div class="dp-who">Gerentes del equipo</div></div>
+        </div>
+        <div class="dt-cap">Los gerentes están topados a 1 mes de bono</div>
+      </div>
+    </div>
+  </div>
+  <div class="callout">
+    <strong>Una sola bolsa asegura el bono de todos.</strong> La utilidad de sus proyectos fondea tanto su bono como el de sus gerentes: 40% del componente Individual y 80% del componente ESCALA corresponden a los directores, y el resto fondea los bonos del equipo, con topes de 2 meses (Individual) y 1 mes (ESCALA) por gerente. Y cada punto por encima de la meta multiplica: pasar de 100% a 105% de cumplimiento lleva la bolsa de 11% a 13% sobre una utilidad mayor, un incremento de 25% por 5 puntos de sobrecumplimiento.
+  </div>
+</section>
+
+<!-- ============ 4. Ejemplo que cumple ============ -->
+<section>
+  <div class="sec-label">04 · Ejemplo A</div>
+  <h2>Director que activa los tres objetivos</h2>
+  <p>Director con meta de utilidad de proyecto de $15,000,000 que logra el 92% de cumplimiento. Sus tres objetivos superan el mínimo, por lo que asegura el acceso y el cálculo corre completo, de la Tabla 1 al monto final.</p>
   <table>
     <thead>
       <tr><th>Objetivo</th><th class="num">Resultado</th><th class="num">Mínimo</th><th>Acceso</th><th class="num">Cálculo</th><th class="num">Aporte</th></tr>
     </thead>
     <tbody>
-      <tr><td>Utilidad de proyecto</td><td class="num">92%</td><td class="num">85%</td><td><span class="badge ok">Activado</span></td><td class="num">92% × 33%</td><td class="num">30.4%</td></tr>
-      <tr><td>Desviación de margen</td><td class="num">−1.2%</td><td class="num">≥ −2.0%</td><td><span class="badge ok">Activado</span></td><td class="num">Binario</td><td class="num">33.0%</td></tr>
-      <tr><td>Evaluación de gerentes</td><td class="num">88%</td><td class="num">80%</td><td><span class="badge ok">Activado</span></td><td class="num">88% × 33%</td><td class="num">29.0%</td></tr>
-      <tr class="total"><td colspan="5">Calificación de objetivos</td><td class="num">92.4%</td></tr>
+      <tr><td>Utilidad de proyecto</td><td class="num">92%</td><td class="num">85%</td><td><span class="badge ok">Activado</span></td><td class="num">92% × 33.3%</td><td class="num">30.7%</td></tr>
+      <tr><td>Desviación de margen</td><td class="num">−1.2%</td><td class="num">≥ −2.0%</td><td><span class="badge ok">Activado</span></td><td class="num">Binario</td><td class="num">33.3%</td></tr>
+      <tr><td>Evaluación de gerentes</td><td class="num">88%</td><td class="num">80%</td><td><span class="badge ok">Activado</span></td><td class="num">88% × 33.3%</td><td class="num">29.3%</td></tr>
+      <tr class="total"><td colspan="5">Calificación de objetivos</td><td class="num">93.3%</td></tr>
     </tbody>
   </table>
   <table>
     <thead>
-      <tr><th>Concepto</th><th class="num">Bolsa (ilustrativa)</th><th class="num">Calificación</th><th class="num">Monto</th></tr>
+      <tr><th>Paso del cálculo (orden del cuadro de distribución)</th><th class="num">Operación</th><th class="num">Resultado</th></tr>
     </thead>
     <tbody>
-      <tr><td>Bono individual</td><td class="num">$500,000</td><td class="num">92.4%</td><td class="num">$462,000</td></tr>
-      <tr><td>Bono ESCALA</td><td class="num" colspan="3">Aplica conforme a la meta de EBITDA y la distribución vigente</td></tr>
+      <tr><td>Utilidad de proyecto lograda</td><td class="num">$15,000,000 × 92%</td><td class="num">$13,800,000</td></tr>
+      <tr><td>Renglón de Tabla 1 (92% de meta)</td><td class="num">Renglón 90% → bolsa 11%</td><td class="num">11%</td></tr>
+      <tr class="total"><td>Bolsa Bono</td><td class="num">$13,800,000 × 11%</td><td class="num">$1,518,000</td></tr>
+      <tr><td>Componente Individual (50%)</td><td class="num">$1,518,000 × 50%</td><td class="num">$759,000</td></tr>
+      <tr><td>· Para directores (40%)</td><td class="num">$759,000 × 40%</td><td class="num">$303,600</td></tr>
+      <tr><td>· Para los gerentes del equipo (60%)</td><td class="num">$759,000 × 60%</td><td class="num">$455,400 (topados a 2 meses c/u)</td></tr>
+      <tr><td>Componente ESCALA (50%)</td><td class="num">$1,518,000 × 50%</td><td class="num">$759,000</td></tr>
+      <tr><td>· Para directores (80%)</td><td class="num">$759,000 × 80%</td><td class="num">$607,200</td></tr>
+      <tr><td>· Para los gerentes del equipo (20%)</td><td class="num">$759,000 × 20%</td><td class="num">$151,800 (topados a 1 mes c/u)</td></tr>
+      <tr><td>Bono individual del director</td><td class="num">$303,600 × 93.3%</td><td class="num">$283,360</td></tr>
+      <tr><td>Bono ESCALA del director (EBITDA al 100%)</td><td class="num">$607,200 × 100%</td><td class="num">$607,200</td></tr>
+      <tr class="total"><td colspan="2">Bono total estimado del director</td><td class="num">$890,560</td></tr>
     </tbody>
   </table>
   <div class="callout">
-    <strong>Nota del ejemplo.</strong> Todos los gerentes del equipo cerraron con evaluación anual igual o mayor a 80% en Integratec; por eso el objetivo se calcula con el promedio (88%). La bolsa de $500,000 es ilustrativa: el monto real depende de la utilidad de proyecto, la Tabla 1 y los porcentajes de distribución autorizados.
+    <strong>Nota del ejemplo.</strong> Todos los gerentes del equipo cerraron con evaluación anual igual o mayor a 80% en Integratec; por eso el objetivo se calcula con el promedio (88%). Las porciones de gerentes ($455,400 y $151,800) son las bolsas de las que se pagan los bonos del equipo, con sus topes de 2 meses y 1 mes por gerente: la misma utilidad asegura el bono del director y el de su gente.
   </div>
 </section>
 
-<!-- ============ 4. La cascada desde un gerente ============ -->
+<!-- ============ 5. La cascada desde un gerente ============ -->
 <section>
-  <div class="sec-label">04 · Ejemplo B</div>
+  <div class="sec-label">05 · Ejemplo B</div>
   <h2>Desarrollar a cada gerente asegura su objetivo</h2>
   <p>Mismo director, mismos resultados financieros. De sus cinco gerentes, cuatro cierran entre 88% y 95%, y uno se encuentra en 78%: acompañarlo hasta el 80% activa el objetivo completo y asegura el acceso al bono.</p>
   <table>
@@ -310,12 +394,12 @@ Bono individual = Bolsa (Tabla 1 y distribución) × Calificación</div>
       <tr><th>Concepto</th><th class="num">Con el equipo completo en 80% o más</th><th class="num">Con un gerente en 78%</th></tr>
     </thead>
     <tbody>
-      <tr><td>Bono individual</td><td class="num">$462,000 asegurados</td><td class="num">Pendiente de activar</td></tr>
-      <tr><td>Bono ESCALA</td><td class="num">Activado</td><td class="num">Sujeto a aprobación del Consejo</td></tr>
+      <tr><td>Bono individual</td><td class="num">$283,360 asegurados</td><td class="num">Pendiente de activar</td></tr>
+      <tr><td>Bono ESCALA</td><td class="num">$607,200 asegurados</td><td class="num">Sujeto a aprobación del Consejo</td></tr>
     </tbody>
   </table>
   <div class="callout">
-    <strong>Cada gerente cuenta.</strong> El objetivo se activa cuando cada integrante del equipo alcanza el 80%: por eso el desarrollo de cada gerente es una inversión directa en el bono del director. En este ejemplo, acompañar a un gerente de 78% a 80% asegura $462,000. El seguimiento mensual en Integratec convierte esa brecha en un plan de acción con meses de anticipación.
+    <strong>Cada gerente cuenta.</strong> El objetivo se activa cuando cada integrante del equipo alcanza el 80%: por eso el desarrollo de cada gerente es una inversión directa en el bono del director. En este ejemplo, acompañar a un gerente de 78% a 80% asegura $890,560 del bono total del ejemplo. El seguimiento mensual en Integratec convierte esa brecha en un plan de acción con meses de anticipación.
   </div>
   <h3 style="margin-top:28px">Qué asegura cada escenario</h3>
   <table>
@@ -323,7 +407,7 @@ Bono individual = Bolsa (Tabla 1 y distribución) × Calificación</div>
       <tr><th>Escenario</th><th class="num">Utilidad</th><th class="num">Margen</th><th class="num">Eval. gerentes</th><th>Resultado</th></tr>
     </thead>
     <tbody>
-      <tr><td>A · Los tres activados</td><td class="num">92%</td><td class="num">−1.2%</td><td class="num">88% (todos ≥ 80%)</td><td><span class="badge ok">Bono asegurado · calificación 92.4%</span></td></tr>
+      <tr><td>A · Los tres activados</td><td class="num">92%</td><td class="num">−1.2%</td><td class="num">88% (todos ≥ 80%)</td><td><span class="badge ok">Bono asegurado · calificación 93.3%</span></td></tr>
       <tr><td>B · Un gerente en 78%</td><td class="num">92%</td><td class="num">−1.2%</td><td class="num">Promedio 90%</td><td><span class="badge warn">Se asegura al llevar al gerente a 80%</span></td></tr>
       <tr><td>C · Margen en −2.4%</td><td class="num">95%</td><td class="num">−2.4%</td><td class="num">90%</td><td><span class="badge warn">Se asegura al sostener el margen en −2.0%</span></td></tr>
       <tr><td>D · Utilidad en 83%</td><td class="num">83%</td><td class="num">−1.0%</td><td class="num">90%</td><td><span class="badge warn">Se asegura al llevar la utilidad a 85%</span></td></tr>
@@ -331,9 +415,9 @@ Bono individual = Bolsa (Tabla 1 y distribución) × Calificación</div>
   </table>
 </section>
 
-<!-- ============ 5. Diagrama de cascada ============ -->
+<!-- ============ 6. Diagrama de cascada ============ -->
 <section>
-  <div class="sec-label">05 · Cascada</div>
+  <div class="sec-label">06 · Cascada</div>
   <h2>Cómo el desarrollo de su equipo asegura su bono</h2>
   <div class="cascade">
     <div class="cas-step hit">
@@ -359,9 +443,9 @@ Bono individual = Bolsa (Tabla 1 y distribución) × Calificación</div>
   </div>
 </section>
 
-<!-- ============ 6. La meta de ESCALA ============ -->
+<!-- ============ 7. La meta de ESCALA ============ -->
 <section>
-  <div class="sec-label">06 · Meta institucional</div>
+  <div class="sec-label">07 · Meta institucional</div>
   <h2>La meta de ESCALA se construye en sus proyectos</h2>
   <div class="meta-band">
     <div class="mb-head">
@@ -390,25 +474,25 @@ Bono individual = Bolsa (Tabla 1 y distribución) × Calificación</div>
   </div>
 </section>
 
-<!-- ============ 6. Simulador ============ -->
+<!-- ============ 8. Simulador ============ -->
 <section>
-  <div class="sec-label">07 · Simulador</div>
+  <div class="sec-label">08 · Simulador</div>
   <h2>Pruebe los escenarios</h2>
   <p>Mueva los resultados y observe cómo se activa cada objetivo (proporcional, binario y de equipo) y cómo el avance hacia la meta institucional activa el Bono ESCALA.</p>
 
   <div class="sim">
-    <div class="sim-head"><strong>Bono individual del director</strong></div>
+    <div class="sim-head"><strong>Bono anual del director</strong></div>
     <div class="sim-body">
       <div class="sim-inputs">
         <div class="field">
-          <label for="bolsa">Bolsa asignada (MXN, ilustrativa)</label>
-          <input type="number" id="bolsa" value="500000" min="1" step="10000">
-          <div class="min-note">El monto real se determina con la utilidad de proyecto, la Tabla 1 y la distribución de grupos</div>
+          <label for="meta">Utilidad de proyecto</label>
+          <input type="text" id="meta" inputmode="numeric" value="15,000,000">
+          <div class="min-note">Utilidad comprometida (meta) del conjunto de sus proyectos, en pesos</div>
         </div>
         <div class="field">
-          <label for="util">Utilidad de proyecto <span class="val" id="vutil">92%</span></label>
-          <input type="range" id="util" min="70" max="100" value="92">
-          <div class="min-note">Se activa en 85% · proporcional hasta 100%</div>
+          <label for="util">Cumplimiento de utilidad de proyecto <span class="val" id="vutil">92%</span></label>
+          <input type="range" id="util" min="70" max="120" value="92">
+          <div class="min-note">Se activa en 85% · la Tabla 1 premia el sobrecumplimiento hasta +20%</div>
         </div>
         <div class="field">
           <label for="margen">Desviación de margen <span class="val" id="vmargen">−1.2%</span></label>
@@ -435,24 +519,33 @@ Bono individual = Bolsa (Tabla 1 y distribución) × Calificación</div>
         <div class="res-row"><span class="rr-label">Utilidad de proyecto</span><span class="rr-val" id="rutil">—</span></div>
         <div class="res-row"><span class="rr-label">Desviación de margen</span><span class="rr-val" id="rmargen">—</span></div>
         <div class="res-row"><span class="rr-label">Evaluación de gerentes</span><span class="rr-val" id="rprom">—</span></div>
+        <div class="res-row"><span class="rr-label">Meta EBITDA (Bono ESCALA)</span><span class="rr-val" id="rebitda">—</span></div>
         <div class="res-row"><span class="rr-label">Calificación de objetivos</span><span class="rr-val" id="rcal">—</span></div>
+        <div class="res-row"><span class="rr-label">Renglón de Tabla 1</span><span class="rr-val" id="rreng">—</span></div>
+        <div class="res-row"><span class="rr-label">Bolsa Bono (utilidad × Bolsa %)</span><span class="rr-val" id="rbolsa">—</span></div>
+        <div class="res-row"><span class="rr-label">Individual (50%): directores 40% · gerentes 60%</span><span class="rr-val" id="rindsp">—</span></div>
+        <div class="res-row"><span class="rr-label">ESCALA (50%): directores 80% · gerentes 20%</span><span class="rr-val" id="rescsp">—</span></div>
         <div class="res-total" id="tot-ind">
-          <div class="rt-label">Bono individual (bolsa × calificación)</div>
+          <div class="rt-label">Bono individual del director (40% del componente × calificación)</div>
           <div class="rt-val" id="monto-ind">—</div>
         </div>
         <div class="res-total" id="tot-esc" style="margin-top:10px">
-          <div class="rt-label">Bono ESCALA</div>
+          <div class="rt-label">Bono ESCALA del director (80% del componente × cumplimiento EBITDA)</div>
           <div class="rt-val" id="monto-esc">—</div>
+        </div>
+        <div class="res-total denied" id="tot-gap" style="margin-top:10px">
+          <div class="rt-label">Adicional por asegurar al activar los pendientes</div>
+          <div class="rt-val" id="monto-gap">—</div>
         </div>
       </div>
     </div>
-    <div class="sim-note">Supuestos: bolsa ilustrativa y factor de EBITDA aplicado de forma proporcional directa. Cifras para fines didácticos; el cálculo oficial lo valida Administración y lo autoriza Dirección General.</div>
+    <div class="sim-note">Distribución conforme al cuadro de la política: 50/50 entre componentes, y dentro de cada uno 40/60 (Individual) y 80/20 (ESCALA) entre directores y gerentes, con topes de 2 y 1 mes para gerentes. Factor de EBITDA proporcional directo. Cifras para fines didácticos; el cálculo oficial lo valida Administración y lo autoriza Dirección General.</div>
   </div>
 </section>
 
-<!-- ============ 8. Condiciones de acceso ============ -->
+<!-- ============ 9. Condiciones de acceso ============ -->
 <section>
-  <div class="sec-label">08 · Condiciones de acceso</div>
+  <div class="sec-label">09 · Condiciones de acceso</div>
   <h2>Requisitos para recibir el pago</h2>
   <p>La vigencia laboral completa el acceso al pago.</p>
   <table>
@@ -460,15 +553,15 @@ Bono individual = Bolsa (Tabla 1 y distribución) × Calificación</div>
       <tr><th>Condición</th><th>Regla para el Grupo 1</th></tr>
     </thead>
     <tbody>
-      <tr><td>Vigencia laboral</td><td>Estar activo en la empresa al momento del pago (marzo de 2027)</td></tr>
+      <tr><td>Vigencia laboral</td><td>Estar activo en ESCALA en la fecha de pago: 31 de marzo de 2027</td></tr>
       <tr><td>Antigüedad mínima</td><td>No aplica al Grupo 1; el requisito de 6 meses corresponde a los Grupos 2 y 3</td></tr>
     </tbody>
   </table>
 </section>
 
-<!-- ============ 9. Verificación ============ -->
+<!-- ============ 10. Verificación ============ -->
 <section>
-  <div class="sec-label">09 · Verificación</div>
+  <div class="sec-label">10 · Verificación</div>
   <h2>Compruebe su comprensión</h2>
 
   <div class="quiz-item" data-correct="2">
@@ -502,19 +595,20 @@ Bono individual = Bolsa (Tabla 1 y distribución) × Calificación</div>
   </div>
 </section>
 
-<!-- ============ 10. Puntos clave ============ -->
+<!-- ============ 11. Puntos clave ============ -->
 <section style="border-bottom:none">
-  <div class="sec-label">10 · Puntos clave</div>
+  <div class="sec-label">11 · Puntos clave</div>
   <h2>Lo que debe recordar</h2>
   <ul class="takeaways">
     <li>Su bono se asegura activando los tres objetivos de manera conjunta: utilidad de proyecto (se activa en 85%), desviación de margen (se asegura completo al sostenerse en −2.0% o mejor) y evaluación de gerentes (se activa en 80%).</li>
+    <li>Su Bolsa Bono nace de la Tabla 1 (utilidad lograda por el porcentaje del renglón alcanzado) y se distribuye en el orden del cuadro: 50% Individual y 50% ESCALA; dentro de Individual, 40% directores y 60% gerentes (topados a 2 meses); dentro de ESCALA, 80% directores y 20% gerentes (topados a 1 mes). Superar la meta incrementa el porcentaje de bolsa de manera creciente.</li>
     <li>El margen es binario: sostener el umbral asegura de inmediato el 33% completo del rubro.</li>
     <li>El objetivo Evaluación de Gerentes se activa cuando cada gerente del equipo cierra en 80% o más: desarrollar a cada gerente es una inversión directa en su propio bono.</li>
     <li>Cada registro mensual en Integratec suma a la calificación anual de cada gerente; asegurar la constancia del registro protege el objetivo de todo el equipo.</li>
     <li>La meta de EBITDA 2026 es $30.8 mdp sin considerar bonos. La bolsa del Bono ESCALA se activa a partir del 85% de la meta y crece hasta asegurarse completa en el 100%, para todos los grupos.</li>
     <li>La utilidad de sus proyectos es el principal insumo de esa meta: cada punto entregado suma a su bolsa de Tabla 1 y acerca a toda la organización al Bono ESCALA.</li>
     <li>Con los tres objetivos activados, el Bono ESCALA se suma de manera automática; en otros casos, queda sujeto a aprobación del Consejo.</li>
-    <li>El pago se asegura permaneciendo activo en la empresa en marzo de 2027.</li>
+    <li>El pago se asegura permaneciendo activo en ESCALA en la fecha de pago, 31 de marzo de 2027.</li>
   </ul>
   <footer>ESCALA · Política de compensación variable 2026 v3 · Material didáctico interno. Las cifras de los ejemplos son ilustrativas; los cálculos oficiales los valida Administración y los autoriza Dirección General.</footer>
 </section>
@@ -525,93 +619,123 @@ Bono individual = Bolsa (Tabla 1 y distribución) × Calificación</div>
 (function(){
   var fmt = function(n){ return "$" + Math.round(n).toLocaleString("es-MX"); };
 
+  var T1 = [[85,11],[90,11],[95,11],[100,11],[105,13],[110,15],[115,17],[120,19]];
+
+  function renglon(c){
+    var r = null;
+    for (var i = 0; i < T1.length; i++){ if (c >= T1[i][0]) r = T1[i]; }
+    return r; // null si c < 85
+  }
+
+  function fmt(x){ return "$" + Math.round(x).toLocaleString("es-MX"); }
+
+  function escenario(util, margen, prom, peor, e, meta){
+    var r = { checks:{}, suma:0, okInd:true };
+    if (util >= 85){ r.aUtil = util / 3; r.suma += r.aUtil; r.checks.util = true; }
+    else { r.okInd = false; r.checks.util = false; }
+    if (margen >= -2.0){ r.suma += 100 / 3; r.checks.margen = true; }
+    else { r.okInd = false; r.checks.margen = false; }
+    if (peor >= 80 && prom >= 80){ r.aProm = prom / 3; r.suma += r.aProm; r.checks.ger = true; }
+    else { r.okInd = false; r.checks.ger = false; }
+    r.checks.ebitda = (e >= 85);
+    r.reng = renglon(util);
+    r.utilPesos = meta * util / 100;
+    r.bolsaBono = r.reng ? r.utilPesos * r.reng[1] / 100 : 0;
+    r.compInd = r.bolsaBono * 0.5;          // componente Individual
+    r.compEsc = r.bolsaBono * 0.5;          // componente ESCALA
+    r.indDir = r.compInd * 0.40;            // directores 40%
+    r.indGer = r.compInd * 0.60;            // gerentes 60% (topados a 2 meses)
+    r.escDir = r.compEsc * 0.80;            // directores 80%
+    r.escGer = r.compEsc * 0.20;            // gerentes 20% (topados a 1 mes)
+    r.bonoInd = r.okInd ? r.indDir * r.suma / 100 : 0;
+    r.bonoEsc = (r.okInd && r.checks.ebitda) ? r.escDir * e / 100 : 0;
+    return r;
+  }
+
+  function pinta(id, ok, txtOk, txtPend){
+    var el = document.getElementById(id);
+    if (ok){ el.textContent = "\u2713 " + txtOk; el.style.color = "var(--status-positive)"; }
+    else { el.textContent = txtPend; el.style.color = "var(--status-warning)"; }
+  }
+
   function calc(){
-    var bolsa = parseFloat(document.getElementById("bolsa").value) || 0;
+    var metaEl = document.getElementById("meta");
+    var meta = parseFloat(metaEl.value.replace(/[^0-9]/g, "")) || 0;
+    metaEl.value = meta ? meta.toLocaleString("es-MX") : "";
     var util = parseInt(document.getElementById("util").value, 10);
-    var margen = parseInt(document.getElementById("margen").value, 10) / 10; // slider en décimas
+    var margen = parseInt(document.getElementById("margen").value, 10) / 10;
     var prom = parseInt(document.getElementById("prom").value, 10);
     var peor = parseInt(document.getElementById("peor").value, 10);
     var e = parseInt(document.getElementById("ebitda").value, 10);
 
     document.getElementById("vutil").textContent = util + "%";
-    document.getElementById("vmargen").textContent = (margen < 0 ? "−" : "") + Math.abs(margen).toFixed(1) + "%";
+    document.getElementById("vmargen").textContent = (margen < 0 ? "\u2212" : "") + Math.abs(margen).toFixed(1) + "%";
     document.getElementById("vprom").textContent = prom + "%";
     document.getElementById("vpeor").textContent = peor + "%";
     document.getElementById("vebitda").textContent = e + "%";
 
-    var ok = true;
-    var suma = 0;
+    var cur = escenario(util, margen, prom, peor, e, meta);
 
-    var rutil = document.getElementById("rutil");
-    if (util >= 85){
-      var a1 = util * 0.33;
-      suma += a1;
-      rutil.textContent = a1.toFixed(1) + "% · activado";
-      rutil.style.color = "";
-    } else {
-      ok = false;
-      rutil.textContent = "Se activa en 85%";
-      rutil.style.color = "var(--status-warning)";
-    }
-
-    var rmargen = document.getElementById("rmargen");
-    if (margen >= -2.0){
-      suma += 33;
-      rmargen.textContent = "33.0% · asegurado";
-      rmargen.style.color = "";
-    } else {
-      ok = false;
-      rmargen.textContent = "Se asegura desde −2.0%";
-      rmargen.style.color = "var(--status-warning)";
-    }
-
-    var rprom = document.getElementById("rprom");
-    if (peor < 80){
-      ok = false;
-      rprom.textContent = "Se activa al llevar a cada gerente a 80%";
-      rprom.style.color = "var(--status-warning)";
-    } else if (prom >= 80){
-      var a3 = prom * 0.33;
-      suma += a3;
-      rprom.textContent = a3.toFixed(1) + "% · activado";
-      rprom.style.color = "";
-    } else {
-      ok = false;
-      rprom.textContent = "Se activa con promedio de 80%";
-      rprom.style.color = "var(--status-warning)";
-    }
+    pinta("rutil", cur.checks.util, cur.checks.util ? cur.aUtil.toFixed(1) + "% \u00b7 activado" : "", "Se activa en 85%");
+    pinta("rmargen", cur.checks.margen, "33.3% \u00b7 asegurado", "Se asegura desde \u22122.0%");
+    var gerOk = cur.checks.ger ? cur.aProm.toFixed(1) + "% \u00b7 activado" : "";
+    var gerPend = (peor < 80) ? "Se activa al llevar a cada gerente a 80%" : "Se activa con promedio de 80%";
+    pinta("rprom", cur.checks.ger, gerOk, gerPend);
+    pinta("rebitda", cur.checks.ebitda, e + "% \u00b7 bolsa ESCALA activada", "Se activa con la meta al 85%");
 
     var rcal = document.getElementById("rcal");
+    if (cur.okInd){ rcal.textContent = cur.suma.toFixed(1) + "%"; rcal.style.color = ""; }
+    else { rcal.textContent = "Se asegura al activar los tres objetivos"; rcal.style.color = "var(--status-warning)"; }
+
+    var rreng = document.getElementById("rreng");
+    if (cur.reng){
+      var et = cur.reng[0] <= 100 ? cur.reng[0] + "%" : "+" + (cur.reng[0] - 100) + "%";
+      rreng.textContent = "Rengl\u00f3n " + et + " \u2192 bolsa " + cur.reng[1] + "%";
+      rreng.style.color = "";
+    } else {
+      rreng.textContent = "Se activa desde 85% de la meta";
+      rreng.style.color = "var(--status-warning)";
+    }
+    document.getElementById("rbolsa").textContent = cur.reng ? fmt(cur.utilPesos) + " \u00d7 " + cur.reng[1] + "% = " + fmt(cur.bolsaBono) : "\u2014";
+    document.getElementById("rindsp").textContent = cur.reng ? fmt(cur.indDir) + " \u00b7 " + fmt(cur.indGer) : "\u2014";
+    document.getElementById("rescsp").textContent = cur.reng ? fmt(cur.escDir) + " \u00b7 " + fmt(cur.escGer) : "\u2014";
+
     var totInd = document.getElementById("tot-ind");
     var totEsc = document.getElementById("tot-esc");
     var mInd = document.getElementById("monto-ind");
     var mEsc = document.getElementById("monto-esc");
 
-    if (ok){
-      rcal.textContent = suma.toFixed(1) + "%";
-      rcal.style.color = "";
+    if (cur.okInd){
       totInd.classList.remove("denied");
-      mInd.textContent = fmt(bolsa * suma / 100) + " asegurados";
+      mInd.textContent = fmt(cur.bonoInd) + " asegurados";
     } else {
-      rcal.textContent = "Se asegura al activar los tres objetivos";
-      rcal.style.color = "var(--status-warning)";
       totInd.classList.add("denied");
       mInd.textContent = "Por activar";
     }
-    var mdp = (30.8 * e / 100).toFixed(1);
-    if (e < 85){
+    if (!cur.checks.ebitda){
       totEsc.classList.add("denied");
-      mEsc.textContent = "Se activa con la meta al 85% · EBITDA $" + mdp + " mdp";
-    } else if (ok){
+      mEsc.textContent = "Se activa con la meta al 85%";
+    } else if (cur.okInd){
       totEsc.classList.remove("denied");
-      mEsc.textContent = "Bolsa activada al " + e + "% · EBITDA $" + mdp + " mdp";
+      mEsc.textContent = fmt(cur.bonoEsc) + " asegurados \u00b7 EBITDA " + e + "%";
     } else {
       totEsc.classList.add("denied");
-      mEsc.textContent = "Sujeto a aprobación del Consejo";
+      mEsc.textContent = "Sujeto a aprobaci\u00f3n del Consejo";
+    }
+
+    // Adicional por asegurar: escenario potencial activando los pendientes en su m\u00ednimo
+    var pot = escenario(Math.max(util, 85), Math.max(margen, -2.0), Math.max(prom, 80), Math.max(peor, 80), Math.max(e, 85), meta);
+    var gap = (pot.bonoInd + pot.bonoEsc) - (cur.bonoInd + cur.bonoEsc);
+    var totGap = document.getElementById("tot-gap");
+    if (gap > 0.5){
+      totGap.style.display = "";
+      document.getElementById("monto-gap").textContent = fmt(gap);
+    } else {
+      totGap.style.display = "none";
     }
   }
 
-  ["bolsa","util","margen","prom","peor","ebitda"].forEach(function(id){
+  ["meta","util","margen","prom","peor","ebitda"].forEach(function(id){
     document.getElementById(id).addEventListener("input", calc);
   });
   calc();
