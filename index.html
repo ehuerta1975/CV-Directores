@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Efecto cascada del bono — Directores de proyecto (Grupo 1) — Compensación variable 2026</title>
 <style>
+/* ---------- Fuente de marca (handoff-diseno-escala) ---------- */
+@font-face{font-family:"Nimbus Sans DOT";src:url("fonts/NimbusSansDOT-Light.otf") format("opentype");font-weight:300;font-style:normal;font-display:swap}
+@font-face{font-family:"Nimbus Sans DOT";src:url("fonts/NimbusSansDOT-Regular.otf") format("opentype");font-weight:400;font-style:normal;font-display:swap}
 /* ============================================================
    ESCALA — tokens (colors_and_type.css, subset autocontenido)
    ============================================================ */
@@ -24,6 +27,7 @@
   --status-warning:#B07000;  --status-warning-bg:#FBF1DD;
   --status-negative:#B5331C; --status-negative-bg:#F7E5E1;
   --font-sans:"Nimbus Sans L","Nimbus Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --font-light:"Nimbus Sans DOT","Nimbus Sans L","Helvetica Neue",Helvetica,Arial,sans-serif;
   --font-mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,monospace;
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -41,14 +45,13 @@ a{color:var(--escala-orange);text-decoration:none}
 
 header{border-bottom:1px solid var(--border-subtle);background:var(--bg-card)}
 .header-inner{max-width:880px;margin:0 auto;padding:20px 24px;display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.logo{font-weight:700;letter-spacing:.18em;font-size:15px;color:var(--fg-1)}
-.logo span{color:var(--escala-orange)}
+.logo-img{height:14px;width:auto}
 .header-meta{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-3)}
 
 .hero{padding:48px 0 40px;border-bottom:1px solid var(--border-subtle)}
 .eyebrow{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--escala-orange);font-weight:700;margin-bottom:12px}
-h1{font-size:34px;line-height:1.1;letter-spacing:-0.02em;color:var(--fg-1);font-weight:700;max-width:640px}
-.lede{font-size:18px;line-height:1.45;color:var(--gray-600);margin-top:16px;max-width:640px;font-weight:300}
+h1{font-size:38px;line-height:1.1;letter-spacing:-0.02em;color:var(--fg-1);font-weight:700;max-width:680px}
+.lede{font-family:var(--font-light);font-size:20px;line-height:1.45;color:var(--gray-600);margin-top:16px;max-width:680px;font-weight:300}
 
 section{padding:40px 0;border-bottom:1px solid var(--border-subtle)}
 .sec-label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--fg-3);font-weight:700;margin-bottom:8px}
@@ -170,7 +173,7 @@ footer{padding-top:32px;font-size:11px;color:var(--fg-3);letter-spacing:.04em}
   .rule-grid,.kpi-grid{grid-template-columns:1fr}
   .sim-body{grid-template-columns:1fr}
   .sim-inputs{border-right:none;border-bottom:1px solid var(--border-subtle)}
-  h1{font-size:28px}
+  h1{font-size:26px}
 }
 @media(prefers-reduced-motion:reduce){*{transition:none !important}}
 </style>
@@ -179,7 +182,7 @@ footer{padding-top:32px;font-size:11px;color:var(--fg-3);letter-spacing:.04em}
 
 <header>
   <div class="header-inner">
-    <div class="logo">ESC<span>A</span>LA</div>
+    <img class="logo-img" src="brand/wordmark-black.png" alt="ESCALA" height="14" style="display:block">
     <div class="header-meta">Compensación variable 2026 · Módulo didáctico · Directores de proyecto</div>
   </div>
 </header>
@@ -189,7 +192,7 @@ footer{padding-top:32px;font-size:11px;color:var(--fg-3);letter-spacing:.04em}
 <div class="hero">
   <div class="eyebrow">Grupo 1 · Directores de proyecto · Regla de acceso conjunto</div>
   <h1>Sus tres objetivos y el desarrollo de su equipo aseguran su bono</h1>
-  <p class="lede">El acceso a su bono individual se asegura cumpliendo tres objetivos de manera conjunta. Uno de ellos, la evaluación de gerentes, se construye con su equipo: cuando cada gerente cierra el año en 80% o más, el objetivo se activa completo. Y la utilidad de los proyectos que usted dirige construye la meta de EBITDA que activa el Bono ESCALA para toda la organización.</p>
+  <p class="lede">El acceso a su bono individual se asegura cumpliendo tres objetivos de manera conjunta. Uno de ellos, la evaluación de gerentes, se construye con su equipo: cuando cada gerente cierra sus KPI dentro de la holgura, el objetivo se activa completo. Y la utilidad de los proyectos que usted dirige construye la meta de EBITDA que activa el Bono ESCALA para toda la organización.</p>
 </div>
 
 <!-- ============ 1. La regla ============ -->
@@ -209,8 +212,8 @@ footer{padding-top:32px;font-size:11px;color:var(--fg-3);letter-spacing:.04em}
     </div>
     <div class="rule-cell">
       <div class="rule-num">Equipo</div>
-      <strong>Cada gerente en 80% activa su objetivo</strong>
-      <p>El objetivo Evaluación de Gerentes se activa cuando cada gerente del equipo cierra el año en 80% o más en Integratec. Desarrollar a cada gerente es asegurar el objetivo.</p>
+      <strong>Cada gerente dentro de la holgura activa su objetivo</strong>
+      <p>El objetivo Evaluación de Gerentes se activa cuando cada gerente del equipo cierra sus tres KPI dentro de la holgura: satisfacción 80%, cobranza 90%, auditorías 80%. Desarrollar a cada gerente es asegurar el objetivo.</p>
     </div>
   </div>
 </section>
@@ -225,24 +228,36 @@ footer{padding-top:32px;font-size:11px;color:var(--fg-3);letter-spacing:.04em}
       <div class="kpi-name">Utilidad de proyecto</div>
       <div class="kpi-min">85%</div>
       <div class="kpi-cap">mínimo de acceso</div>
-      <div class="kpi-w">Ponderación 33% · proporcional de 85% a 100% · el resultado alcanzado se multiplica por 33%</div>
+      <div class="kpi-w">Ponderación 33.3% · proporcional de 85% a 100% · el resultado alcanzado se multiplica por 33.3%</div>
     </div>
     <div class="kpi-card">
       <div class="kpi-name">Desviación de margen</div>
       <div class="kpi-min">≥ −2.0%</div>
       <div class="kpi-cap">umbral binario</div>
-      <div class="kpi-w">Ponderación 33% · al lograr el mínimo se accede al 33% del rubro; en caso contrario, cero</div>
+      <div class="kpi-w">Ponderación 33.3% · al lograr el mínimo se asegura el 33.3% del rubro completo</div>
     </div>
     <div class="kpi-card">
       <div class="kpi-name">Evaluación de gerentes</div>
       <div class="kpi-min">80%</div>
       <div class="kpi-cap">mínimo de acceso</div>
-      <div class="kpi-w">Ponderación 33% · promedio anual de las calificaciones de desempeño de sus gerentes en Integratec · proporcional de 80% a 100%</div>
+      <div class="kpi-w">Ponderación 33.3% · se calcula con los tres KPI de sus gerentes aplicando un rango con holgura (satisfacción 80%, cobranza 90%, auditorías 80%) · proporcional de 80% a 100%</div>
     </div>
   </div>
   <div class="callout">
     <strong>Su bolsa.</strong> La bolsa a repartir se calcula aplicando a la utilidad de proyecto (conjunto de proyectos del director) el porcentaje del renglón de la Tabla 1 en el que se ubique su resultado, y posteriormente los porcentajes de Distribución del bono para los Grupos 1 y 2. El Bono ESCALA corresponde a la meta de EBITDA 2026 ($30.8 mdp sin considerar bonos), proporcional entre 85% y 100% de la meta, y requiere el cumplimiento de los mínimos del bono individual; de lo contrario, queda sujeto a aprobación del Consejo.
   </div>
+  <h3 style="margin-top:28px">La holgura de la evaluación de gerentes</h3>
+  <p>Los mínimos de la primera columna determinan el acceso de cada gerente a su propio bono. La holgura de la segunda columna es otra cosa: es el criterio de pase de usted, el director, en el objetivo Evaluación de Gerentes. Un gerente cuenta como favorable para su objetivo cuando sus KPI quedan dentro de la holgura, aunque no haya alcanzado los mínimos de su propio bono: con cobranza de 92%, por ejemplo, ese gerente no accede a su bono, pero sí le da a usted el pase en el objetivo.</p>
+  <table>
+    <thead>
+      <tr><th>KPI del gerente</th><th class="num">Mínimo para el bono del gerente</th><th class="num">Holgura para el pase del director (Evaluación de gerentes)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Satisfacción del cliente</td><td class="num">85%</td><td class="num">80%</td></tr>
+      <tr><td>Cobranza</td><td class="num">95%</td><td class="num">90%</td></tr>
+      <tr><td>Auditorías internas</td><td class="num">85%</td><td class="num">80%</td></tr>
+    </tbody>
+  </table>
   <h3 style="margin-top:28px">Las fórmulas, objetivo por objetivo</h3>
   <p>Dos objetivos son proporcionales y uno es binario. En los tres, el mínimo es el punto de activación: alcanzarlo activa el rubro y suma a su calificación.</p>
   <div class="formula">Utilidad de proyecto:
@@ -253,9 +268,10 @@ Desviación de margen (binario):
   Si Desviación ≥ −2.0%:     Aporte = 33.3% completo  (asegurado de inmediato)
   Si Desviación &lt; −2.0%:     Aporte = 0  (se asegura sosteniendo el umbral)
 
-Evaluación de gerentes:
-  Si cada gerente ≥ 80% anual:  Aporte = Promedio del equipo × 33.3%  (activado)
-  El objetivo se activa cuando todo el equipo alcanza el mínimo
+Evaluación de gerentes (KPI de los gerentes con holgura 80/90/80):
+  Si cada gerente queda dentro de la holgura:
+                             Aporte = Promedio del equipo × 33.3%  (activado)
+  El objetivo se activa cuando todo el equipo queda dentro del rango
 
 Calificación   = Aporte utilidad + Aporte margen + Aporte gerentes
 Bono individual = Bolsa (Tabla 1 y distribución) × Calificación</div>
@@ -268,8 +284,8 @@ Bono individual = Bolsa (Tabla 1 y distribución) × Calificación</div>
       <tr class="zeroed"><td>Utilidad a un punto del mínimo</td><td class="num">84%</td><td class="num">0%</td><td><span class="badge warn">A 1 punto de activarse</span></td></tr>
       <tr><td>Margen dentro del umbral</td><td class="num">−2.0%</td><td class="num">33.3%</td><td><span class="badge ok">Asegurado completo</span></td></tr>
       <tr class="zeroed"><td>Margen a una décima del umbral</td><td class="num">−2.1%</td><td class="num">0%</td><td><span class="badge warn">A 1 décima de asegurarse</span></td></tr>
-      <tr><td>Todos los gerentes en 80% o más</td><td class="num">Promedio 88%</td><td class="num">29.3%</td><td><span class="badge ok">Objetivo activado</span></td></tr>
-      <tr class="zeroed"><td>Un gerente en 79%</td><td class="num">Promedio 90%</td><td class="num">0%</td><td><span class="badge warn">Se activa al llevarlo a 80%</span></td></tr>
+      <tr><td>Todos los gerentes dentro de la holgura</td><td class="num">Promedio 88%</td><td class="num">29.3%</td><td><span class="badge ok">Objetivo activado</span></td></tr>
+      <tr class="zeroed"><td>Un gerente fuera de la holgura (cobranza 88%)</td><td class="num">Promedio 90%</td><td class="num">0%</td><td><span class="badge warn">Se activa al regresarlo al rango</span></td></tr>
     </tbody>
   </table>
   <div class="callout">
@@ -355,7 +371,7 @@ Bono individual = Bolsa (Tabla 1 y distribución) × Calificación</div>
     </thead>
     <tbody>
       <tr><td>Utilidad de proyecto lograda</td><td class="num">$15,000,000 × 92%</td><td class="num">$13,800,000</td></tr>
-      <tr><td>Renglón de Tabla 1 (92% de meta)</td><td class="num">Renglón 90% → bolsa 11%</td><td class="num">11%</td></tr>
+      <tr><td>Renglón de Tabla 1 (92% de meta)</td><td class="num">Renglón 90%, bolsa 11%</td><td class="num">11%</td></tr>
       <tr class="total"><td>Bolsa Bono</td><td class="num">$13,800,000 × 11%</td><td class="num">$1,518,000</td></tr>
       <tr><td>Componente Individual (50%)</td><td class="num">$1,518,000 × 50%</td><td class="num">$759,000</td></tr>
       <tr><td>· Para directores (40%)</td><td class="num">$759,000 × 40%</td><td class="num">$303,600</td></tr>
@@ -369,7 +385,7 @@ Bono individual = Bolsa (Tabla 1 y distribución) × Calificación</div>
     </tbody>
   </table>
   <div class="callout">
-    <strong>Nota del ejemplo.</strong> Todos los gerentes del equipo cerraron con evaluación anual igual o mayor a 80% en Integratec; por eso el objetivo se calcula con el promedio (88%). Las porciones de gerentes ($455,400 y $151,800) son las bolsas de las que se pagan los bonos del equipo, con sus topes de 2 meses y 1 mes por gerente: la misma utilidad asegura el bono del director y el de su gente.
+    <strong>Nota del ejemplo.</strong> Todos los gerentes del equipo cerraron sus KPI dentro de la holgura (satisfacción 80%, cobranza 90%, auditorías 80%); por eso el objetivo se calcula con el promedio del equipo (88%). Las porciones de gerentes ($455,400 y $151,800) son las bolsas de las que se pagan los bonos del equipo, con sus topes de 2 meses y 1 mes por gerente: la misma utilidad asegura el bono del director y el de su gente.
   </div>
 </section>
 
@@ -377,7 +393,7 @@ Bono individual = Bolsa (Tabla 1 y distribución) × Calificación</div>
 <section>
   <div class="sec-label">05 · Ejemplo B</div>
   <h2>Desarrollar a cada gerente asegura su objetivo</h2>
-  <p>Mismo director, mismos resultados financieros. De sus cinco gerentes, cuatro cierran entre 88% y 95%, y uno se encuentra en 78%: acompañarlo hasta el 80% activa el objetivo completo y asegura el acceso al bono.</p>
+  <p>Mismo director, mismos resultados financieros. De sus cinco gerentes, cuatro cierran sus KPI con holgura, y uno cierra cobranza en 88%, dos puntos por debajo de la holgura de 90%: acompañarlo a recuperarlos activa el objetivo completo y asegura el acceso al bono.</p>
   <table>
     <thead>
       <tr><th>Objetivo</th><th class="num">Resultado</th><th class="num">Mínimo</th><th>Estado</th><th class="num">Aporte</th></tr>
@@ -385,7 +401,7 @@ Bono individual = Bolsa (Tabla 1 y distribución) × Calificación</div>
     <tbody>
       <tr><td>Utilidad de proyecto</td><td class="num">92%</td><td class="num">85%</td><td><span class="badge ok">Activado</span></td><td class="num">—</td></tr>
       <tr><td>Desviación de margen</td><td class="num">−1.2%</td><td class="num">≥ −2.0%</td><td><span class="badge ok">Asegurado</span></td><td class="num">—</td></tr>
-      <tr class="zeroed"><td>Evaluación de gerentes</td><td class="num">Promedio 90% · un gerente en 78%</td><td class="num">80%</td><td><span class="badge warn">Se activa al llevarlo a 80%</span></td><td class="num">0% hasta que todo el equipo alcance el mínimo</td></tr>
+      <tr class="zeroed"><td>Evaluación de gerentes</td><td class="num">Promedio 90% · un gerente con cobranza en 88%</td><td class="num">Holgura 90%</td><td><span class="badge warn">Se activa al llevarlo a 90%</span></td><td class="num">0% hasta que todo el equipo quede dentro de la holgura</td></tr>
       <tr class="total"><td colspan="4">Acceso al bono individual</td><td class="num">Se asegura al activar los tres objetivos</td></tr>
     </tbody>
   </table>
@@ -399,7 +415,7 @@ Bono individual = Bolsa (Tabla 1 y distribución) × Calificación</div>
     </tbody>
   </table>
   <div class="callout">
-    <strong>Cada gerente cuenta.</strong> El objetivo se activa cuando cada integrante del equipo alcanza el 80%: por eso el desarrollo de cada gerente es una inversión directa en el bono del director. En este ejemplo, acompañar a un gerente de 78% a 80% asegura $890,560 del bono total del ejemplo. El seguimiento mensual en Integratec convierte esa brecha en un plan de acción con meses de anticipación.
+    <strong>Cada gerente cuenta.</strong> El objetivo se activa cuando cada integrante del equipo queda dentro de la holgura: por eso el desarrollo de cada gerente es una inversión directa en el bono del director. En este ejemplo, acompañar a un gerente a recuperar dos puntos de cobranza asegura $890,560 del bono total. El seguimiento mensual de los KPI de cada gerente convierte esa brecha en un plan de acción con meses de anticipación.
   </div>
   <h3 style="margin-top:28px">Qué asegura cada escenario</h3>
   <table>
@@ -408,7 +424,7 @@ Bono individual = Bolsa (Tabla 1 y distribución) × Calificación</div>
     </thead>
     <tbody>
       <tr><td>A · Los tres activados</td><td class="num">92%</td><td class="num">−1.2%</td><td class="num">88% (todos ≥ 80%)</td><td><span class="badge ok">Bono asegurado · calificación 93.3%</span></td></tr>
-      <tr><td>B · Un gerente en 78%</td><td class="num">92%</td><td class="num">−1.2%</td><td class="num">Promedio 90%</td><td><span class="badge warn">Se asegura al llevar al gerente a 80%</span></td></tr>
+      <tr><td>B · Un gerente fuera de la holgura</td><td class="num">92%</td><td class="num">−1.2%</td><td class="num">Promedio 90%</td><td><span class="badge warn">Se asegura al regresar al gerente al rango</span></td></tr>
       <tr><td>C · Margen en −2.4%</td><td class="num">95%</td><td class="num">−2.4%</td><td class="num">90%</td><td><span class="badge warn">Se asegura al sostener el margen en −2.0%</span></td></tr>
       <tr><td>D · Utilidad en 83%</td><td class="num">83%</td><td class="num">−1.0%</td><td class="num">90%</td><td><span class="badge warn">Se asegura al llevar la utilidad a 85%</span></td></tr>
     </tbody>
@@ -422,14 +438,14 @@ Bono individual = Bolsa (Tabla 1 y distribución) × Calificación</div>
   <div class="cascade">
     <div class="cas-step hit">
       <div class="cs-eyebrow">El equipo</div>
-      <strong>Cada gerente registra su evaluación mensual y cierra el año en 80% o más</strong>
-      <p>Cada registro mensual en Integratec suma a la calificación anual de cada gerente. El acompañamiento del director convierte los registros en una trayectoria previsible.</p>
+      <strong>Cada gerente sostiene sus tres KPI dentro de la holgura</strong>
+      <p>La encuesta semestral de satisfacción, la cobranza mensual y las auditorías por fase construyen el resultado anual de cada gerente. El acompañamiento del director convierte esas mediciones en una trayectoria previsible.</p>
     </div>
     <div class="cas-arrow"></div>
     <div class="cas-step hit">
       <div class="cs-eyebrow">El objetivo</div>
       <strong>Su objetivo Evaluación de Gerentes se activa completo</strong>
-      <p>Con todo el equipo en 80% o más, el objetivo se calcula con el promedio y aporta hasta 33% de su calificación.</p>
+      <p>Con todo el equipo dentro de la holgura (satisfacción 80%, cobranza 90%, auditorías 80%), el objetivo se calcula con el promedio y aporta hasta 33.3% de su calificación.</p>
     </div>
     <div class="cas-arrow"></div>
     <div class="cas-step hit">
@@ -439,7 +455,7 @@ Bono individual = Bolsa (Tabla 1 y distribución) × Calificación</div>
     </div>
   </div>
   <div class="callout">
-    <strong>Ventaja de gestión.</strong> El seguimiento mensual en Integratec le muestra con meses de anticipación a qué gerente acompañar para que todo el equipo cierre en 80% o más. Un plan de desarrollo iniciado a tiempo asegura el objetivo con holgura.
+    <strong>Ventaja de gestión.</strong> El seguimiento mensual de la satisfacción, la cobranza y las auditorías de cada gerente le muestra con anticipación a quién acompañar para mantener al equipo dentro del rango. Un plan de desarrollo iniciado a tiempo asegura el objetivo.
   </div>
 </section>
 
@@ -500,14 +516,17 @@ Bono individual = Bolsa (Tabla 1 y distribución) × Calificación</div>
           <div class="min-note">Se asegura completo al sostenerse en −2.0% o mejor</div>
         </div>
         <div class="field">
+          <label for="fuera">¿Todo el equipo dentro de la holgura de sus KPI?</label>
+          <select id="fuera" style="width:100%;padding:8px 10px;border:1px solid var(--border-default);border-radius:6px;font-family:var(--font-sans);font-size:13px;color:var(--fg-1);background:var(--bg-card)">
+            <option value="no">Sí, todos dentro del rango</option>
+            <option value="si">No, al menos un gerente fuera del rango</option>
+          </select>
+          <div class="min-note">Holgura por KPI: satisfacción 80% · cobranza 90% · auditorías 80%</div>
+        </div>
+        <div class="field">
           <label for="prom">Promedio anual del equipo de gerentes <span class="val" id="vprom">88%</span></label>
           <input type="range" id="prom" min="70" max="100" value="88">
           <div class="min-note">Se activa en 80% · proporcional hasta 100%</div>
-        </div>
-        <div class="field">
-          <label for="peor">Evaluación anual más baja del equipo <span class="val" id="vpeor">85%</span></label>
-          <input type="range" id="peor" min="60" max="100" value="85">
-          <div class="min-note">El objetivo se activa cuando cada gerente alcanza el 80%</div>
         </div>
         <div class="field">
           <label for="ebitda">Cumplimiento de la meta EBITDA de ESCALA <span class="val" id="vebitda">100%</span></label>
@@ -565,10 +584,10 @@ Bono individual = Bolsa (Tabla 1 y distribución) × Calificación</div>
   <h2>Compruebe su comprensión</h2>
 
   <div class="quiz-item" data-correct="2">
-    <div class="quiz-q">1. Su utilidad de proyecto cierra en 92%, la desviación de margen en −1.5% y el promedio de sus gerentes en 90%, pero uno de ellos cierra en 76%. ¿Accede a su bono individual?</div>
+    <div class="quiz-q">1. Su utilidad de proyecto cierra en 92%, la desviación de margen en −1.5% y el promedio de sus gerentes en 90%, pero uno de ellos cierra cobranza en 87%, por debajo de la holgura de 90%. ¿Accede a su bono individual?</div>
     <button class="quiz-opt" data-i="0">Sí, porque el promedio del equipo supera el 80%</button>
     <button class="quiz-opt" data-i="1">Sí, pero con el rubro de gerentes descontado proporcionalmente</button>
-    <button class="quiz-opt" data-i="2">Todavía no: el objetivo Evaluación de Gerentes se activa cuando cada gerente alcanza el 80%, por lo que queda pendiente hasta lograrlo</button>
+    <button class="quiz-opt" data-i="2">Todavía no: el objetivo Evaluación de Gerentes se activa cuando cada gerente queda dentro de la holgura, por lo que queda pendiente hasta lograrlo</button>
     <div class="quiz-fb"></div>
   </div>
 
@@ -581,10 +600,10 @@ Bono individual = Bolsa (Tabla 1 y distribución) × Calificación</div>
   </div>
 
   <div class="quiz-item" data-correct="1">
-    <div class="quiz-q">3. Uno de sus gerentes no registró su evaluación mensual en Integratec en dos periodos. ¿Cómo afecta esto?</div>
-    <button class="quiz-opt" data-i="0">No afecta si el gerente cumple sus KPI de bono</button>
-    <button class="quiz-opt" data-i="1">Cada registro realizado suma; los periodos sin registro cuentan como cero, por lo que asegurar el registro mensual protege la calificación anual del gerente y su objetivo</button>
-    <button class="quiz-opt" data-i="2">Los periodos sin registro se excluyen del promedio</button>
+    <div class="quiz-q">3. Un gerente de su equipo cierra cobranza en 92%: por debajo del mínimo de su propio bono (95%) pero dentro de la holgura (90%). ¿Qué ocurre?</div>
+    <button class="quiz-opt" data-i="0">El gerente aún no asegura su bono y su objetivo de usted tampoco se activa</button>
+    <button class="quiz-opt" data-i="1">El gerente aún no asegura su propio bono, pero su objetivo Evaluación de Gerentes se mantiene activo porque el resultado queda dentro de la holgura</button>
+    <button class="quiz-opt" data-i="2">Ambos bonos se aseguran, porque la holgura aplica también al bono del gerente</button>
     <div class="quiz-fb"></div>
   </div>  <div class="quiz-item" data-correct="1">
     <div class="quiz-q">4. Usted cumple sus tres objetivos con una calificación de 92%, pero ESCALA cierra el año en 83% de su meta de EBITDA. ¿Qué ocurre con los bonos?</div>
@@ -600,11 +619,11 @@ Bono individual = Bolsa (Tabla 1 y distribución) × Calificación</div>
   <div class="sec-label">11 · Puntos clave</div>
   <h2>Lo que debe recordar</h2>
   <ul class="takeaways">
-    <li>Su bono se asegura activando los tres objetivos de manera conjunta: utilidad de proyecto (se activa en 85%), desviación de margen (se asegura completo al sostenerse en −2.0% o mejor) y evaluación de gerentes (se activa en 80%).</li>
+    <li>Su bono se asegura activando los tres objetivos de manera conjunta: utilidad de proyecto (se activa en 85%), desviación de margen (se asegura completo al sostenerse en −2.0% o mejor) y evaluación de gerentes (se activa cuando cada gerente queda dentro de la holgura y el promedio alcanza 80%).</li>
     <li>Su Bolsa Bono nace de la Tabla 1 (utilidad lograda por el porcentaje del renglón alcanzado) y se distribuye en el orden del cuadro: 50% Individual y 50% ESCALA; dentro de Individual, 40% directores y 60% gerentes (topados a 2 meses); dentro de ESCALA, 80% directores y 20% gerentes (topados a 1 mes). Superar la meta incrementa el porcentaje de bolsa de manera creciente.</li>
     <li>El margen es binario: sostener el umbral asegura de inmediato el 33% completo del rubro.</li>
-    <li>El objetivo Evaluación de Gerentes se activa cuando cada gerente del equipo cierra en 80% o más: desarrollar a cada gerente es una inversión directa en su propio bono.</li>
-    <li>Cada registro mensual en Integratec suma a la calificación anual de cada gerente; asegurar la constancia del registro protege el objetivo de todo el equipo.</li>
+    <li>El objetivo Evaluación de Gerentes se calcula con los tres KPI de sus gerentes aplicando la holgura satisfacción 80%, cobranza 90% y auditorías 80%: desarrollar a cada gerente es una inversión directa en su propio bono.</li>
+    <li>La holgura da margen: un gerente puede quedar debajo del mínimo de su propio bono y aun así mantener activo su objetivo, siempre que permanezca dentro del rango.</li>
     <li>La meta de EBITDA 2026 es $30.8 mdp sin considerar bonos. La bolsa del Bono ESCALA se activa a partir del 85% de la meta y crece hasta asegurarse completa en el 100%, para todos los grupos.</li>
     <li>La utilidad de sus proyectos es el principal insumo de esa meta: cada punto entregado suma a su bolsa de Tabla 1 y acerca a toda la organización al Bono ESCALA.</li>
     <li>Con los tres objetivos activados, el Bono ESCALA se suma de manera automática; en otros casos, queda sujeto a aprobación del Consejo.</li>
@@ -629,13 +648,13 @@ Bono individual = Bolsa (Tabla 1 y distribución) × Calificación</div>
 
   function fmt(x){ return "$" + Math.round(x).toLocaleString("es-MX"); }
 
-  function escenario(util, margen, prom, peor, e, meta){
+  function escenario(util, margen, prom, fuera, e, meta){
     var r = { checks:{}, suma:0, okInd:true };
     if (util >= 85){ r.aUtil = util / 3; r.suma += r.aUtil; r.checks.util = true; }
     else { r.okInd = false; r.checks.util = false; }
     if (margen >= -2.0){ r.suma += 100 / 3; r.checks.margen = true; }
     else { r.okInd = false; r.checks.margen = false; }
-    if (peor >= 80 && prom >= 80){ r.aProm = prom / 3; r.suma += r.aProm; r.checks.ger = true; }
+    if (!fuera && prom >= 80){ r.aProm = prom / 3; r.suma += r.aProm; r.checks.ger = true; }
     else { r.okInd = false; r.checks.ger = false; }
     r.checks.ebitda = (e >= 85);
     r.reng = renglon(util);
@@ -652,9 +671,11 @@ Bono individual = Bolsa (Tabla 1 y distribución) × Calificación</div>
     return r;
   }
 
+  var CHECK_SVG = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-2px;margin-right:4px"><path d="M20 6 9 17l-5-5"/></svg>';
+
   function pinta(id, ok, txtOk, txtPend){
     var el = document.getElementById(id);
-    if (ok){ el.textContent = "\u2713 " + txtOk; el.style.color = "var(--status-positive)"; }
+    if (ok){ el.innerHTML = CHECK_SVG + txtOk; el.style.color = "var(--status-positive)"; }
     else { el.textContent = txtPend; el.style.color = "var(--status-warning)"; }
   }
 
@@ -665,21 +686,20 @@ Bono individual = Bolsa (Tabla 1 y distribución) × Calificación</div>
     var util = parseInt(document.getElementById("util").value, 10);
     var margen = parseInt(document.getElementById("margen").value, 10) / 10;
     var prom = parseInt(document.getElementById("prom").value, 10);
-    var peor = parseInt(document.getElementById("peor").value, 10);
+    var fuera = document.getElementById("fuera").value === "si";
     var e = parseInt(document.getElementById("ebitda").value, 10);
 
     document.getElementById("vutil").textContent = util + "%";
     document.getElementById("vmargen").textContent = (margen < 0 ? "\u2212" : "") + Math.abs(margen).toFixed(1) + "%";
     document.getElementById("vprom").textContent = prom + "%";
-    document.getElementById("vpeor").textContent = peor + "%";
     document.getElementById("vebitda").textContent = e + "%";
 
-    var cur = escenario(util, margen, prom, peor, e, meta);
+    var cur = escenario(util, margen, prom, fuera, e, meta);
 
     pinta("rutil", cur.checks.util, cur.checks.util ? cur.aUtil.toFixed(1) + "% \u00b7 activado" : "", "Se activa en 85%");
     pinta("rmargen", cur.checks.margen, "33.3% \u00b7 asegurado", "Se asegura desde \u22122.0%");
     var gerOk = cur.checks.ger ? cur.aProm.toFixed(1) + "% \u00b7 activado" : "";
-    var gerPend = (peor < 80) ? "Se activa al llevar a cada gerente a 80%" : "Se activa con promedio de 80%";
+    var gerPend = fuera ? "Se activa al regresar al rango al gerente fuera de la holgura" : "Se activa con promedio de 80%";
     pinta("rprom", cur.checks.ger, gerOk, gerPend);
     pinta("rebitda", cur.checks.ebitda, e + "% \u00b7 bolsa ESCALA activada", "Se activa con la meta al 85%");
 
@@ -690,7 +710,7 @@ Bono individual = Bolsa (Tabla 1 y distribución) × Calificación</div>
     var rreng = document.getElementById("rreng");
     if (cur.reng){
       var et = cur.reng[0] <= 100 ? cur.reng[0] + "%" : "+" + (cur.reng[0] - 100) + "%";
-      rreng.textContent = "Rengl\u00f3n " + et + " \u2192 bolsa " + cur.reng[1] + "%";
+      rreng.textContent = "Rengl\u00f3n " + et + ", bolsa " + cur.reng[1] + "%";
       rreng.style.color = "";
     } else {
       rreng.textContent = "Se activa desde 85% de la meta";
@@ -724,7 +744,7 @@ Bono individual = Bolsa (Tabla 1 y distribución) × Calificación</div>
     }
 
     // Adicional por asegurar: escenario potencial activando los pendientes en su m\u00ednimo
-    var pot = escenario(Math.max(util, 85), Math.max(margen, -2.0), Math.max(prom, 80), Math.max(peor, 80), Math.max(e, 85), meta);
+    var pot = escenario(Math.max(util, 85), Math.max(margen, -2.0), Math.max(prom, 80), false, Math.max(e, 85), meta);
     var gap = (pot.bonoInd + pot.bonoEsc) - (cur.bonoInd + cur.bonoEsc);
     var totGap = document.getElementById("tot-gap");
     if (gap > 0.5){
@@ -735,7 +755,7 @@ Bono individual = Bolsa (Tabla 1 y distribución) × Calificación</div>
     }
   }
 
-  ["meta","util","margen","prom","peor","ebitda"].forEach(function(id){
+  ["meta","util","margen","prom","fuera","ebitda"].forEach(function(id){
     document.getElementById(id).addEventListener("input", calc);
   });
   calc();
